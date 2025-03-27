@@ -1,0 +1,8 @@
+BOT_TOKEN = 'token'
+DATE_TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
+DATE_FORMAT_VISIBLE = '%d.%m.%Y'
+DATE_TIME_FORMAT_VISIBLE = '%d.%m.%Y %H:%M:%S'
+TIMEZONE = 'Europe/Kyiv'
+CURRENCY = 'грн.'
+MEMORY_DIMENSION = 'GB'
+LOGGING_LEVEL = 'INFO'  # DEBUG #INFO

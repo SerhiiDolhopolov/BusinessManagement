@@ -1,0 +1,8 @@
+__pycache__/
+.venv
+.env
+.flake8
+temp
+settings
+Pipfile
+Pipfile.lock
