@@ -24,12 +24,12 @@ class Statistics(ABC):
 
     def _save_figure(self, path: str, fig: go.Figure):
         figure_json = pio.to_json(fig)
-        with open(path, 'w') as file:
+        with open(path, 'w', encoding='utf-8') as file:
             file.write(figure_json)
 
     def _save_design(self, path: str, fig: go.Figure):
         design = pio.to_html(fig, full_html=False)    
-        with open(path, 'w') as file:
+        with open(path, 'w', encoding='utf-8') as file:
             file.write(design)
 
     def _save_data(self, path: str, data: pd.DataFrame):
@@ -37,7 +37,7 @@ class Statistics(ABC):
 
     def _save_layout(self, path: str, fig: go.Figure):
         layout = pio.to_json(fig.layout)
-        with open(path, 'w') as file:
+        with open(path, 'w', encoding='utf-8') as file:
             file.write(layout)
 
     @abstractmethod

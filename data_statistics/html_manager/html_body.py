@@ -9,22 +9,22 @@ from UI import UI_statistics
 def get_html_body() -> str:
     income_path_dir = IncomeStatistics.PATH_DIR
     income_diagram_design = ''
-    with open(income_path_dir / 'design.html', 'r') as file:
+    with open(income_path_dir / 'design.html', 'r', encoding='utf-8') as file:
         income_diagram_design = file.read()
 
     models_path_dir = ModelsStatistics.PATH_DIR
     models_diagram_design = ''
-    with open(models_path_dir / 'design.html', 'r') as file:
+    with open(models_path_dir / 'design.html', 'r', encoding='utf-8') as file:
         models_diagram_design = file.read()
 
     defects_path_dir = DeffectsStaticts.PATH_DIR
     defects_diagram_design = ''
-    with open(defects_path_dir / 'design.html', 'r') as file:
+    with open(defects_path_dir / 'design.html', 'r', encoding='utf-8') as file:
         defects_diagram_design = file.read()
 
     users_path_dir = UsersStatistics.PATH_DIR
     users_diagram_design = ''
-    with open(users_path_dir / 'design.html', 'r') as file:
+    with open(users_path_dir / 'design.html', 'r', encoding='utf-8') as file:
         users_diagram_design = file.read()
 
     return f"""

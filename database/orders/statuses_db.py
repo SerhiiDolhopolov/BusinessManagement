@@ -251,7 +251,9 @@ class StatusesDB(DB):
                         AND {StatusesDB.STATUS_TYPE} = {DB.sql(StatusType.FINISHED)}
                     );
                 """)  
-        return (answer[0], answer[1]) if answer[0] and answer[1] else [0, 0]
+        price_selling_sum = answer[0] if answer[0] else 0
+        profit_money_sum_for_statuses = answer[1] if answer[1] else 0
+        return price_selling_sum, profit_money_sum_for_statuses
 
     def get_spent_money_by_today(self) -> tuple[float, float]:
         """RETURNS (price_purchase_sum, charges_sum)"""
@@ -270,7 +272,9 @@ class StatusesDB(DB):
             WHERE rn = 1 
             AND {StatusesDB.DATE_TIME} BETWEEN '{date_time_now} 00:00:00' AND '{date_time_now} 23:59:59';    
         """)
-        return (answer[0], answer[1]) if answer[0] and answer[1] else [0, 0]
+        price_purchase_sum = answer[0] if answer[0] else 0
+        charges_sum = answer[1] if answer[1] else 0
+        return price_purchase_sum, charges_sum
 
     def get_date_time_now(self) -> datetime:
         date_time_now = datetime.now(TIMEZONE)
