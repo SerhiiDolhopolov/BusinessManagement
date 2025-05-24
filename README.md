@@ -17,7 +17,7 @@
     </td>
   </tr>
   <tr>
-  <td colspan="4" align="center">
+  <td colspan="5" align="center">
     <table>
       <tr>
         <td align="center">
@@ -34,7 +34,7 @@
   </td>
 </tr>
   <tr>
-    <td colspan="4" align="center">
+    <td colspan="5" align="center">
       <img src="https://img.shields.io/badge/SQLite-Database-d6123c?style=flat&logo=sqlite&logoColor=white&labelColor=d6123c&color=white" alt="SQLite">
     </td>
   </tr>
@@ -47,6 +47,8 @@
 - [Introduction](#introduction)
 - [Screenshots](#screenshots)
   - [Menu panels by role](#menu-panels-by-role)
+  - [Example of phones menu](#example-of-phones-menu)
+  - [Phone menu for admin](#phone-menu-for-admin)
   - [Statistic by Plotly](#statistic-by-plotly)
     - [Statistic menu and summary statistic](#statistic-menu-and-summary-statistic)
     - [Chart of profit relative to phones sold](#chart-of-profit-relative-to-phones-sold)
@@ -84,6 +86,12 @@ The project was created when I started learning Python. It uses plain SQL as wel
   </tr>
 </table>
 
+## Example of phones menu
+![Phones menu](images/phones_menu.png)
+
+## Phone menu for admin
+![Phone menu](images/phone.png)
+
 ## Statistic by [Plotly](https://plotly.com/)
 ### Statistic menu and summary statistic
 ![Statistic](images/statistic1.png)
@@ -101,3 +109,12 @@ The project was created when I started learning Python. It uses plain SQL as wel
 ![Statistic](images/statistic5.png)
 
 # To start the project
+1. **Rename** `.env example` to `.env` and set your variables.
+2. **Install dependencies** (if not yet):
+   ```sh
+   pip install -r requirements.txt
+   ```
+3. **Run the bot:**
+   ```sh
+   python main.py
+   ```
