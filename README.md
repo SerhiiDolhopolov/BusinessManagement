@@ -1,36 +1,39 @@
-<table align="center" style="border-collapse:collapse;">
-  <tr style="background-color:transparent;">
+<table align="center">
+  <tr>
     <td align="center">
-        <img src="https://img.shields.io/badge/python-3.13-d6123c?style=flat&color=white&labelColor=d6123c&logo=python&logoColor=white" alt="python">
+        <img src="https://img.shields.io/badge/python-3.13-d6123c?color=white&labelColor=d6123c&logo=python&logoColor=white" alt="python">
     </td>
     <td align="center">
-      <img src="https://img.shields.io/badge/HTML-d6123c?style=flat&color=white&labelColor=d6123c&logo=html5&logoColor=white" alt="HTML">
+      <img src="https://img.shields.io/badge/HTML-d6123c?color=white&labelColor=d6123c&logo=html5&logoColor=white" alt="HTML">
     </td>
     <td align="center">
-      <img src="https://img.shields.io/badge/CSS-d6123c?style=flat&color=white&labelColor=d6123c&logo=css3&logoColor=white" alt="CSS">
+      <img src="https://img.shields.io/badge/CSS-d6123c?color=white&labelColor=d6123c&logo=css3&logoColor=white" alt="CSS">
     </td>
     <td align="center">
-      <img src="https://img.shields.io/badge/JavaScript-d6123c?style=flat&color=white&labelColor=d6123c&logo=javascript&logoColor=white" alt="JavaScript">
+      <img src="https://img.shields.io/badge/JavaScript-d6123c?color=white&labelColor=d6123c&logo=javascript&logoColor=white" alt="JavaScript">
+    </td>
+    <td align="center">
+      <img src="https://img.shields.io/badge/SQL-d6123c?style=flat&color=white&labelColor=d6123c&logo=database&logoColor=white" alt="SQL">
     </td>
   </tr>
-  <tr style="background-color:transparent;">
-    <td colspan="4" align="center">
-      <table style="border-collapse:collapse;">
-        <tr style="background-color:transparent;">
-          <td align="center">
-            <img src="https://img.shields.io/badge/aiogram-3.17.0-d6123c?style=flat&color=white&labelColor=d6123c" alt="aiogram">
-          </td>
-          <td align="center">
-            <img src="https://img.shields.io/badge/pandas-2.2.3-d6123c?style=flat&color=white&labelColor=d6123c" alt="pandas">
-          </td>
-          <td align="center">
-            <img src="https://img.shields.io/badge/plotly-5.24.1-d6123c?style=flat&color=white&labelColor=d6123c" alt="plotly">
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-  <tr style="background-color:transparent;">
+  <tr>
+  <td colspan="4" align="center">
+    <table>
+      <tr>
+        <td align="center">
+          <img src="https://img.shields.io/badge/aiogram-3.17.0-d6123c?color=white&labelColor=d6123c" alt="aiogram">
+        </td>
+        <td align="center">
+          <img src="https://img.shields.io/badge/pandas-2.2.3-d6123c?color=white&labelColor=d6123c" alt="pandas">
+        </td>
+        <td align="center">
+          <img src="https://img.shields.io/badge/plotly-5.24.1-d6123c?color=white&labelColor=d6123c" alt="plotly">
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
     <td colspan="4" align="center">
       <img src="https://img.shields.io/badge/SQLite-Database-d6123c?style=flat&logo=sqlite&logoColor=white&labelColor=d6123c&color=white" alt="SQLite">
     </td>
@@ -39,9 +42,62 @@
 
 ---
 
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Screenshots](#screenshots)
+  - [Menu panels by role](#menu-panels-by-role)
+  - [Statistic by Plotly](#statistic-by-plotly)
+    - [Statistic menu and summary statistic](#statistic-menu-and-summary-statistic)
+    - [Chart of profit relative to phones sold](#chart-of-profit-relative-to-phones-sold)
+    - [Profit/quantity graph relative to models sold](#profitquantity-graph-relative-to-models-sold)
+    - [Profit/quantity graph relative to corrected defects of sold models](#profitquantity-graph-relative-to-corrected-defects-of-sold-models)
+    - [Revenue/quantity graph vs number of phone sold by users who downloaded them](#revenuequantity-graph-vs-number-of-phone-sold-by-users-who-downloaded-them)
+- [To start the project](#to-start-the-project)
+
 # Introduction
+
 This project is a commercial CRM system implemented as a Telegram Bot, designed to streamline the management of processes involved in buying used phones, repairing them, and selling them. The system leverages auto-generated statistics with interactive diagrams powered by [Plotly](https://plotly.com/) for enhanced data visualization.
 
+The project was created when I started learning Python. It uses plain SQL as well, without an ORM.
+
 # Screenshots
+## Menu panels by role
+<div style="display: flex; gap: 20px;">
+  <div style="display: flex; flex-direction: column; gap: 0;">
+    <div style="text-align: center;">
+      <img src="images/user_panel.png" alt="User panel" style="width: 250px; display: block; margin: 0;">
+      <p style="margin: 5px 0 0 0;">User panel</p>
+    </div>
+    <div style="text-align: center;">
+      <img src="images/courier_panel.png" alt="Courier panel" style="width: 250px; display: block; margin: 0;">
+      <p style="margin: 5px 0 0 0;">Courier panel</p>
+    </div>
+  </div>
+  <div style="text-align: center;">
+      <img src="images/manager_panel.png" alt="Manager panel" style="width: 250px; display: block; margin: 0;">
+      <p style="margin: 5px 0 0 0;">Manager panel</p>
+  </div>
+  <div style="text-align: center;">
+    <img src="images/admin_panel.png" alt="Admin panel" style="width: 250px; display: block; margin: 0;">
+    <p style="margin: 5px 0 0 0;">Admin panel</p>
+  </div>
+</div>
+
+## Statistic by [Plotly](https://plotly.com/)
+### Statistic menu and summary statistic
+![Statistic](images/statistic1.png)
+
+### Chart of profit relative to phones sold
+![Statistic](images/statistic2.png)
+
+### Profit/quantity graph relative to models sold
+![Statistic](images/statistic3.png)
+
+### Profit/quantity graph relative to corrected defects of sold models
+![Statistic](images/statistic4.png)
+
+### Revenue/quantity graph vs number of phone sold by users who downloaded them
+![Statistic](images/statistic5.png)
 
 # To start the project
