@@ -126,6 +126,7 @@ async def edit_comment_message(chat_id: int, state: FSMContext, order_id: int, c
     status = Status(new_status_type)
     status.comment = comment
     status.date_time = datetime.now(TIMEZONE)
+    order.status = status
     statuses_DB.add_status(chat_id, order_id, status)
     await clear_state(state)
     keyboard_builder = InlineKeyboardBuilder()

@@ -45,10 +45,10 @@ class PositiveFloat:
             except OverflowError:
                 raise OverflowError(UI_descriptors.get_positive_float_overflow_error())
             if value < 0:
-                raise ValueError(UI_descriptors.get_positive_float_less_than_0_error())
+                raise ValueError(UI_descriptors.get_positive_float_less_than_0_error(value=value))
             if type(self.__min) is float and value < self.__min:
-                raise ValueError(UI_descriptors.get_positive_float_min_error())
+                raise ValueError(UI_descriptors.get_positive_float_min_error(value=value, min_value=self.__min))
             if type(self.__max) is float and value > self.__max:
-                raise ValueError(UI_descriptors.get_positive_float_max_error())
+                raise ValueError(UI_descriptors.get_positive_float_max_error(value=value, max_value=self.__max))
 
         setattr(instance, self.__name, value)
