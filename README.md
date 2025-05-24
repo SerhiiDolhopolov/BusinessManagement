@@ -63,26 +63,26 @@ The project was created when I started learning Python. It uses plain SQL as wel
 
 # Screenshots
 ## Menu panels by role
-<div style="display: flex; gap: 20px;">
-  <div style="display: flex; flex-direction: column; gap: 0;">
-    <div style="text-align: center;">
-      <img src="images/user_panel.png" alt="User panel" style="width: 250px; display: block; margin: 0;">
-      <p style="margin: 5px 0 0 0;">User panel</p>
-    </div>
-    <div style="text-align: center;">
-      <img src="images/courier_panel.png" alt="Courier panel" style="width: 250px; display: block; margin: 0;">
-      <p style="margin: 5px 0 0 0;">Courier panel</p>
-    </div>
-  </div>
-  <div style="text-align: center;">
-      <img src="images/manager_panel.png" alt="Manager panel" style="width: 250px; display: block; margin: 0;">
-      <p style="margin: 5px 0 0 0;">Manager panel</p>
-  </div>
-  <div style="text-align: center;">
-    <img src="images/admin_panel.png" alt="Admin panel" style="width: 250px; display: block; margin: 0;">
-    <p style="margin: 5px 0 0 0;">Admin panel</p>
-  </div>
-</div>
+<table>
+  <tr>
+    <td align="center">
+      <img src="images/user_panel.png" alt="User panel" width="250">
+      <p>User panel</p>
+    </td>
+    <td align="center">
+      <img src="images/courier_panel.png" alt="Courier panel" width="250">
+      <p>Courier panel</p>
+    </td>
+    <td align="center">
+      <img src="images/manager_panel.png" alt="Manager panel" width="250">
+      <p>Manager panel</p>
+    </td>
+    <td align="center">
+      <img src="images/admin_panel.png" alt="Admin panel" width="250">
+      <p>Admin panel</p>
+    </td>
+  </tr>
+</table>
 
 ## Statistic by [Plotly](https://plotly.com/)
 ### Statistic menu and summary statistic
