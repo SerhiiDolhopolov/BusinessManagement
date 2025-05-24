@@ -87,40 +87,40 @@ The project was created when I started learning Python. It uses plain SQL as wel
 </table>
 
 ## Example of phones menu
-<p align="center">
+<div align="center">
   <img src="images/phones_menu.png" alt="Phones menu" width="400">
-</p>
+</div>
 
 ## Phone menu for admin
-<p align="center">
+<div align="center">
   <img src="images/phone.png" alt="Phone menu" width="400">
-</p>
+</div>
 
 ## Statistic by [Plotly](https://plotly.com/)
 ### Statistic menu and summary statistic
-<p align="center">
+<div align="center">
   <img src="images/statistic1.png" alt="Statistic" width="600">
-</p>
+</div>
 
 ### Chart of profit relative to phones sold
-<p align="center">
+<div align="center">
   <img src="images/statistic2.png" alt="Statistic" width="600">
-</p>
+</div>
 
 ### Profit/quantity graph relative to models sold
-<p align="center">
+<div align="center">
   <img src="images/statistic3.png" alt="Statistic" width="600">
-</p>
+</div>
 
 ### Profit/quantity graph relative to corrected defects of sold models
-<p align="center">
+<div align="center">
   <img src="images/statistic4.png" alt="Statistic" width="600">
-</p>
+</div>
 
 ### Revenue/quantity graph vs number of phone sold by users who downloaded them
-<p align="center">
+<div align="center">
   <img src="images/statistic5.png" alt="Statistic" width="600">
-</p>
+</div>
 
 # To start the project
 1. **Rename** `.env example` to `.env` and set your variables.
