@@ -47,14 +47,14 @@
 - [Introduction](#introduction)
 - [Screenshots](#screenshots)
   - [Menu panels by role](#menu-panels-by-role)
-  - [Example of phones menu](#example-of-phones-menu)
-  - [Phone menu for admin](#phone-menu-for-admin)
+  - [Example of Phones Menu](#example-of-phones-menu)
+  - [Phone Menu for Admin](#phone-menu-for-admin)
   - [Statistic by Plotly](#statistic-by-plotly)
-    - [Statistic menu and summary statistic](#statistic-menu-and-summary-statistic)
-    - [Chart of profit relative to phones sold](#chart-of-profit-relative-to-phones-sold)
-    - [Profit/quantity graph relative to models sold](#profitquantity-graph-relative-to-models-sold)
-    - [Profit/quantity graph relative to corrected defects of sold models](#profitquantity-graph-relative-to-corrected-defects-of-sold-models)
-    - [Revenue/quantity graph vs number of phone sold by users who downloaded them](#revenuequantity-graph-vs-number-of-phone-sold-by-users-who-downloaded-them)
+    - [Statistic Menu and Summary Statistic](#statistic-menu-and-summary-statistic)
+    - [Chart of Profit Relative to Phones Sold](#chart-of-profit-relative-to-phones-sold)
+    - [Profit/Quantity Graph Relative to Models Sold](#profitquantity-graph-relative-to-models-sold)
+    - [Profit/Quantity Graph Relative to Corrected Defects of Sold Models](#profitquantity-graph-relative-to-corrected-defects-of-sold-models)
+    - [Revenue/Quantity Graph vs Number of Phones Sold by Users Who Downloaded Them](#revenuequantity-graph-vs-number-of-phones-sold-by-users-who-downloaded-them)
 - [To start the project](#to-start-the-project)
 
 # Introduction
@@ -86,40 +86,40 @@ The project was created when I started learning Python. It uses plain SQL as wel
   </tr>
 </table>
 
-## Example of phones menu
+## Example of Phones Menu
 <div align="center">
   <img src="images/phones_menu.png" alt="Phones menu" width="400">
 </div>
 
-## Phone menu for admin
+## Phone Menu for Admin
 <div align="center">
   <img src="images/phone.png" alt="Phone menu" width="400">
 </div>
 
 ## Statistic by [Plotly](https://plotly.com/)
-### Statistic menu and summary statistic
+### Statistic Menu and Summary Statistic
 <div align="center">
-  <img src="images/statistic1.png" alt="Statistic" width="600">
+  <img src="images/statistic1.png" alt="Statistic menu" width="600">
 </div>
 
-### Chart of profit relative to phones sold
+### Chart of Profit Relative to Phones Sold
 <div align="center">
-  <img src="images/statistic2.png" alt="Statistic" width="600">
+  <img src="images/statistic2.png" alt="Profit chart" width="600">
 </div>
 
-### Profit/quantity graph relative to models sold
+### Profit/Quantity Graph Relative to Models Sold
 <div align="center">
-  <img src="images/statistic3.png" alt="Statistic" width="600">
+  <img src="images/statistic3.png" alt="Profit vs models" width="600">
 </div>
 
-### Profit/quantity graph relative to corrected defects of sold models
+### Profit/Quantity Graph Relative to Corrected Defects of Sold Models
 <div align="center">
-  <img src="images/statistic4.png" alt="Statistic" width="600">
+  <img src="images/statistic4.png" alt="Profit vs defects" width="600">
 </div>
 
-### Revenue/quantity graph vs number of phone sold by users who downloaded them
+### Revenue/Quantity Graph vs Number of Phones Sold by Users Who Downloaded Them
 <div align="center">
-  <img src="images/statistic5.png" alt="Statistic" width="600">
+  <img src="images/statistic5.png" alt="Revenue vs downloads" width="600">
 </div>
 
 # To start the project
