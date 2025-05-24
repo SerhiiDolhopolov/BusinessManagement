@@ -40,3 +40,8 @@
 ---
 
 # Introduction
+This project is a commercial CRM system implemented as a Telegram Bot, designed to streamline the management of processes involved in buying used phones, repairing them, and selling them. The system leverages auto-generated statistics with interactive diagrams powered by [Plotly](https://plotly.com/) for enhanced data visualization.
+
+# Screenshots
+
+# To start the project
