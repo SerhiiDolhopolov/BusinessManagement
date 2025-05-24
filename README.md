@@ -87,26 +87,40 @@ The project was created when I started learning Python. It uses plain SQL as wel
 </table>
 
 ## Example of phones menu
-![Phones menu](images/phones_menu.png)
+<p align="center">
+  <img src="images/phones_menu.png" alt="Phones menu" width="400">
+</p>
 
 ## Phone menu for admin
-![Phone menu](images/phone.png)
+<p align="center">
+  <img src="images/phone.png" alt="Phone menu" width="400">
+</p>
 
 ## Statistic by [Plotly](https://plotly.com/)
 ### Statistic menu and summary statistic
-![Statistic](images/statistic1.png)
+<p align="center">
+  <img src="images/statistic1.png" alt="Statistic" width="600">
+</p>
 
 ### Chart of profit relative to phones sold
-![Statistic](images/statistic2.png)
+<p align="center">
+  <img src="images/statistic2.png" alt="Statistic" width="600">
+</p>
 
 ### Profit/quantity graph relative to models sold
-![Statistic](images/statistic3.png)
+<p align="center">
+  <img src="images/statistic3.png" alt="Statistic" width="600">
+</p>
 
 ### Profit/quantity graph relative to corrected defects of sold models
-![Statistic](images/statistic4.png)
+<p align="center">
+  <img src="images/statistic4.png" alt="Statistic" width="600">
+</p>
 
 ### Revenue/quantity graph vs number of phone sold by users who downloaded them
-![Statistic](images/statistic5.png)
+<p align="center">
+  <img src="images/statistic5.png" alt="Statistic" width="600">
+</p>
 
 # To start the project
 1. **Rename** `.env example` to `.env` and set your variables.
