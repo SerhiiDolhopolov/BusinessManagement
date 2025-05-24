@@ -47,8 +47,7 @@
 - [Introduction](#introduction)
 - [Screenshots](#screenshots)
   - [Menu panels by role](#menu-panels-by-role)
-  - [Example of phones menu](#example-of-phones-menu)
-  - [Phone menu for admin](#phone-menu-for-admin)
+  - [Menu](#menu)
   - [Statistic by Plotly](#statistic-by-plotly)
     - [Statistic menu and summary statistic](#statistic-menu-and-summary-statistic)
     - [Chart of profit relative to phones sold](#chart-of-profit-relative-to-phones-sold)
@@ -86,11 +85,20 @@ The project was created when I started learning Python. It uses plain SQL as wel
   </tr>
 </table>
 
-## Example of phones menu
-![Phones menu](images/phones_menu.png)
+## Menu
+<table>
+  <tr>
+    <td align="center">
+      <img src="images/phones_menu.png" alt="Phones menu" width="250">
+      <p>Example of phones menu</p>
+    </td>
+    <td align="center">
+      <img src="images/phone.png" alt="Phone" width="250">
+      <p>Phone menu for admin</p>
+    </td>
+  </tr>
+</table>
 
-## Phone menu for admin
-![Phone menu](images/phone.png)
 
 ## Statistic by [Plotly](https://plotly.com/)
 ### Statistic menu and summary statistic
