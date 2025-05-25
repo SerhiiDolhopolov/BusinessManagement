@@ -10,6 +10,7 @@ def get_func_get_models_diagram_data(models_diagram_data: str) -> str:
         }}
     """
 
+
 def get_func_show_models_diagram_by_dates_filter() -> str:
     return """
         function showModelsDiagramByDatesFilter(startDate, endDate) 
@@ -24,6 +25,7 @@ def get_func_show_models_diagram_by_dates_filter() -> str:
         }
     """
 
+
 def get_func_show_models_diagram_by_dates() -> str:
     return """
         function showModelsDiagramByDates() 
@@ -32,6 +34,7 @@ def get_func_show_models_diagram_by_dates() -> str:
             showModelsDiagram(data)
         }
     """
+
 
 def get_func_show_models_diagram(models_diagram_layout: str, currency: str) -> str:
     return f"""

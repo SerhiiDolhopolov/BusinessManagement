@@ -24,19 +24,24 @@ class PhonesDB(DB):
             self.BATTERY_STATUS: 'INTEGER NOT NULL',
         }
 
-    def add_phone(self, phone:'Phone') -> int:
-        f"""Returns {self.ID}"""
-        return self._insert_data(self.TABLE_NAME, {
-            self.MODEL: phone.model,
-            self.COLOR: phone.color,
-            self.MEMORY: phone.memory,
-            self.BATTERY_STATUS: phone.battery_status
-        }).lastrowid
+    def add_phone(self, phone: 'Phone') -> int:
+        """Returns phone_id"""
+        return self._insert_data(
+            self.TABLE_NAME,
+            {
+                self.MODEL: phone.model,
+                self.COLOR: phone.color,
+                self.MEMORY: phone.memory,
+                self.BATTERY_STATUS: phone.battery_status
+            }
+        ).lastrowid
 
-    def get_phone(self, phone_id:int) -> 'Phone':
+    def get_phone(self, phone_id: int) -> 'Phone':
         """Returns Phone without defects"""
-        answer = self._fetchone(f"""SELECT {self.MODEL}, {self.COLOR}, {self.MEMORY}, {self.BATTERY_STATUS} 
-                              FROM {self.TABLE_NAME} WHERE {self.ID} = {DB.sql(phone_id)};""")
+        answer = self._fetchone(
+            f"""SELECT {self.MODEL}, {self.COLOR}, {self.MEMORY}, {self.BATTERY_STATUS} 
+            FROM {self.TABLE_NAME} WHERE {self.ID} = {DB.sql(phone_id)};"""
+        )
         if not answer:
             return None
         phone = Phone(answer[0])
@@ -46,16 +51,28 @@ class PhonesDB(DB):
         return phone
 
     def update_memory(self, id: int, memory: int):
-        self._update_data(self.TABLE_NAME, self.MEMORY, memory, f'WHERE {self.ID} = {DB.sql(id)}')
+        self._update_data(
+            self.TABLE_NAME,
+            self.MEMORY,
+            memory,
+            f'WHERE {self.ID} = {DB.sql(id)}'
+        )
 
     def update_battery_status(self, id: int, battery_status: int):
-        self._update_data(self.TABLE_NAME, self.BATTERY_STATUS, battery_status, f'WHERE {self.ID} = {DB.sql(id)}')
+        self._update_data(
+            self.TABLE_NAME,
+            self.BATTERY_STATUS,
+            battery_status,
+            f'WHERE {self.ID} = {DB.sql(id)}'
+        )
 
-    def get_phones(self, limit:int = 0, offset:int = 0) -> list[(int, 'Phone')]:
+    def get_phones(self, limit: int = 0, offset: int = 0) -> list[(int, 'Phone')]:
         """Returns list[(id, phone)]"""
-        answer = self._fetchall(f"""SELECT {self.ID}, {self.MODEL}, {self.COLOR}, {self.MEMORY}, {self.BATTERY_STATUS} 
-                              FROM {self.TABLE_NAME}
-                              {f"LIMIT {limit} OFFSET {offset}" if limit else ''};""")
+        answer = self._fetchall(
+            f"""SELECT {self.ID}, {self.MODEL}, {self.COLOR}, {self.MEMORY}, {self.BATTERY_STATUS} 
+            FROM {self.TABLE_NAME}
+            {f"LIMIT {limit} OFFSET {offset}" if limit else ''};"""
+        )
         phones = list()
         if not answer:
             return phones

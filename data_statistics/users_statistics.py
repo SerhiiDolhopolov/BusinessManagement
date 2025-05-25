@@ -1,4 +1,5 @@
 from pathlib import Path
+
 import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
@@ -55,26 +56,37 @@ class UsersStatistics(Statistics):
         self._fill_na_0(df, 'price_purchase')
         self._fill_na_0(df, 'charges')
 
-    def _get_grouped_data(self, df: pd.DataFrame, group_by: str, query: str = None) -> pd.DataFrame:
+    def _get_grouped_data(
+        self, df: pd.DataFrame, group_by: str, query: str = None
+    ) -> pd.DataFrame:
         data = df.query(query) if query else df
-        data = data \
-            .groupby(group_by, as_index=False) \
-            .aggregate(price_selling_sum=('price_selling', 'sum'), 
+        data = (
+            data.groupby(group_by, as_index=False)
+            .aggregate(
+                price_selling_sum=('price_selling', 'sum'),
                 price_purchase_sum=('price_purchase', 'sum'),
                 charges_sum=('charges', 'sum'),
-                orders_count=('order_id', 'nunique')
-                       ) \
+                orders_count=('order_id', 'nunique'),
+            )
             .sort_values(group_by)
-        data['income_sum'] = data.price_selling_sum - (data.price_purchase_sum + data.charges_sum)
+        )
+        data['income_sum'] = (
+            data.price_selling_sum - (data.price_purchase_sum + data.charges_sum)
+        )
         return data
 
     def _get_figure(self):
         fig = make_subplots(
-            rows=1, cols=2,
+            rows=1,
+            cols=2,
             specs=[[{'type': 'xy'}, {'type': 'domain'}]]
         )
 
-        fig.update_layout(hovermode='x unified', plot_bgcolor='white', xaxis=dict(showspikes=False))
+        fig.update_layout(
+            hovermode='x unified',
+            plot_bgcolor='white',
+            xaxis=dict(showspikes=False)
+        )
         fig.update_xaxes(
             tickfont=dict(
                 size=14,

@@ -16,15 +16,15 @@ def get_func_show_diagrams_by_dates_filter() -> str:
             const match_end = endDateText.match(regex_pattern_date);
             if (match_start && match_end) 
             {{
-              let [_, day, month, year] = match_start; 
-              startDate = new Date(year, month - 1, day);
-              [_, day, month, year] = match_end; 
-              endDate = new Date(year, +month - 1, +day);
+                let [_, day, month, year] = match_start; 
+                startDate = new Date(year, month - 1, day);
+                [_, day, month, year] = match_end; 
+                endDate = new Date(year, +month - 1, +day);
             }}
             else 
             {{
-              alert("Select start and end date.");
-              return;
+                alert("Select start and end date.");
+                return;
             }}
 
             if (!startDate || !endDate) 
@@ -41,23 +41,28 @@ def get_func_show_diagrams_by_dates_filter() -> str:
             setInfoText(`{UI_statistics.get_statistic_from()} ${{dateToStr(startDate)}} {UI_statistics.get_statistic_to()} ${{dateToStr(endDate)}}`);
         }}
     """
+
+
 def get_func_show_diagrams_by_dates() -> str:
     return f"""
-            function showDiagramsByDates() 
-            {{
-                showIncomeDiagramByDates();
-                showModelsDiagramByDates();
-                showDefectsDiagramByDates();
-                showUsersDiagramByDates();
-                setInfoText('{UI_statistics.get_all_statistic()}');
-            }}
-            """
+        function showDiagramsByDates() 
+        {{
+            showIncomeDiagramByDates();
+            showModelsDiagramByDates();
+            showDefectsDiagramByDates();
+            showUsersDiagramByDates();
+            setInfoText('{UI_statistics.get_all_statistic()}');
+        }}
+    """
+
 
 def get_func_show_diagrams_by_months() -> str:
     return get_func_show_diagrams_by('months', UI_statistics.get_statistic_by_months())
 
+
 def get_func_show_diagrams_by_years() -> str:
     return get_func_show_diagrams_by('years', UI_statistics.get_statistic_by_years())
+
 
 def get_func_show_diagrams_by(by: str, info_text: str) -> str:
     """Example:
@@ -75,7 +80,6 @@ def get_func_show_diagrams_by(by: str, info_text: str) -> str:
     """
 
 
-
 def get_func_show_diagrams_to_next_x_days() -> str:
     return f"""
         function showDiagramsToNextXDays(startDate, days_count) 
@@ -84,7 +88,7 @@ def get_func_show_diagrams_to_next_x_days() -> str:
             endDate.setDate(startDate.getDate() + days_count - 1);
             startDate.setHours(0, 0, 0, 0);
             endDate.setHours(23, 59, 59, 999);
-            
+
             showIncomeDiagramByDatesFilter(startDate, endDate);
             showModelsDiagramByDatesFilter(startDate, endDate);
             showDefectsDiagramByDatesFilter(startDate, endDate);
@@ -92,6 +96,7 @@ def get_func_show_diagrams_to_next_x_days() -> str:
             setInfoText(`{UI_statistics.get_statistic_from()} ${{dateToStr(startDate)}} {UI_statistics.get_statistic_to()} ${{dateToStr(endDate)}}`);
         }}
     """
+
 
 def get_func_show_diagrams_by_x_days(days_count: int) -> str:
     return f"""
@@ -101,7 +106,6 @@ def get_func_show_diagrams_by_x_days(days_count: int) -> str:
             showDiagramsToNextXDays(day, {days_count});
         }}
     """
-
 
 
 def get_func_show_diagrams_from_monday_to_next_week() -> str:
@@ -116,6 +120,7 @@ def get_func_show_diagrams_from_monday_to_next_week() -> str:
         }
     """
 
+
 def get_func_show_diagrams_by_x_week(week_title: str, difference_week: int = 0):
     """Example: 
         week_title: Current, Previous, Next
@@ -129,7 +134,6 @@ def get_func_show_diagrams_by_x_week(week_title: str, difference_week: int = 0):
     """
 
 
-
 def get_func_show_diagrams_from_first_day_to_next_month() -> str:
     return """
         function showDiagramsFromFirstDayToNextMonth(startDate) 
@@ -139,6 +143,7 @@ def get_func_show_diagrams_from_first_day_to_next_month() -> str:
             showDiagramsToNextXDays(firstDay, getCountDaysInMonth(firstDay));
         }
     """
+
 
 def get_func_show_diagrams_by_x_month(month_title: str, difference_month: int = 0):
     """Example: 

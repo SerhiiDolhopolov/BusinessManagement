@@ -11,7 +11,6 @@ from handlers.commands import get_backup
 
 from bot import dp, bot, TIMEZONE
 
-
 users_DB = UsersDB()
 statuses_DB = StatusesDB()
 
@@ -22,22 +21,27 @@ async def send_backup_to_admins():
     for telegram_id, _, _ in admins:
         await bot.send_document(telegram_id, document=file, caption=message)
 
+
 scheduler = AsyncIOScheduler(timezone=TIMEZONE)
 scheduler.add_job(send_backup_to_admins, 'cron', hour=23, minute=59)
 
+
 async def main() -> None:
-    dp.include_routers(commands.router, 
-                       menu.router,
-                       users.router,
-                       add_phone.router,
-                       change_phone.router,
-                       phones.router,
-                       models_menu.router,
-                       colors_menu.router,
-                       defects_menu.router,
-                       memories_menu.router)
+    dp.include_routers(
+        commands.router,
+        menu.router,
+        users.router,
+        add_phone.router,
+        change_phone.router,
+        phones.router,
+        models_menu.router,
+        colors_menu.router,
+        defects_menu.router,
+        memories_menu.router
+    )
     scheduler.start()
     await dp.start_polling(bot)
+
 
 if __name__ == "__main__":
     try:

@@ -1,14 +1,13 @@
 import html
 
-from UI.language_resources import LanguageResources
-
-from bot import MEMORY_DIMENSION, CURRENCY, format_money
-
 from database.users_db import Role, RoleManager
 
 from models.status import StatusManager, StatusType, Status
 from models.order import Order
 from models.phone import Phone
+
+from UI.language_resources import LanguageResources
+from bot import MEMORY_DIMENSION, CURRENCY, format_money
 
 
 __menu = LanguageResources().menu
@@ -26,7 +25,10 @@ __solve_defect = __phone_page['solve_defect']
 
 def get_info(order: Order, order_id: int, phone: Phone, role: Role) -> str:
     status_emoji = StatusManager.get_emoji(order.status.status_type)
-    title = f"<code>{html.escape(phone.model)} {phone.memory}{MEMORY_DIMENSION} | {html.escape(phone.color)}</code>"
+    title = (
+        f"<code>{html.escape(phone.model)} {phone.memory}{MEMORY_DIMENSION} | "
+        f"{html.escape(phone.color)}</code>"
+    )
     title = __phone_page.get('title').format(status_emoji=status_emoji, title=title)
 
     battery_status = f"<code>{phone.battery_status}%</code>"
@@ -37,21 +39,30 @@ def get_info(order: Order, order_id: int, phone: Phone, role: Role) -> str:
 
     charges = f"<code>{format_money(order.charges)} {CURRENCY}</code>"
     charges = __phone_page.get('charges').format(charges=charges)
+
     price_selling = f"<code>{format_money(order.price_selling)} {CURRENCY}</code>"
     price_selling = __phone_page.get('price_selling').format(price_selling=price_selling)
 
-    ps = float(order.price_selling if order.price_selling else 0) 
-    pp = float(order.price_purchase if order.price_purchase else 0) 
+    ps = float(order.price_selling if order.price_selling else 0)
+    pp = float(order.price_purchase if order.price_purchase else 0)
     ch = float(order.charges if order.charges else 0)
     profit_count = ps - pp - ch
 
     profit = f"<code>{format_money(profit_count)} {CURRENCY}</code>"
     profit = __phone_page.get('profit').format(profit=profit)
 
-    defects = '-' if not phone.get_defects() else f"<pre>{html.escape('\n'.join(f'- {defect}' for defect in phone.get_defects()))}</pre>"
+    defects = (
+        "-"
+        if not phone.get_defects()
+        else f"<pre>{html.escape(chr(10).join(f'- {defect}' for defect in phone.get_defects()))}</pre>"
+    )
     defects = __phone_page.get('defects').format(defects=defects)
 
-    comment = '-' if not order.status.comment else f"<pre>{html.escape(str(order.status.comment))}</pre>"
+    comment = (
+        "-"
+        if not order.status.comment
+        else f"<pre>{html.escape(str(order.status.comment))}</pre>"
+    )
     comment = __phone_page.get('comment').format(comment=comment)
 
     date_time = f"<code>{html.escape(str(order.status.get_str_date_time()))}</code>"
@@ -61,15 +72,15 @@ def get_info(order: Order, order_id: int, phone: Phone, role: Role) -> str:
     order = __phone_page.get('order').format(order=order)
 
     return (
-        title + '\n\n' +
-        battery_status + '\n' +
-        ( price_purchase + '\n' + charges + '\n' if role in (Role.ADMIN, Role.MANAGER) else '') +
-        price_selling + '\n' +
-        ( profit + '\n\n' if role in (Role.ADMIN, Role.MANAGER) else '') +
-        defects + '\n\n' +
-        comment + '\n\n' +
-        date_time + '\n' +
-        order
+        title + '\n\n'
+        + battery_status + '\n'
+        + (price_purchase + '\n' + charges + '\n' if role in (Role.ADMIN, Role.MANAGER) else '')
+        + price_selling + '\n'
+        + (profit + '\n\n' if role in (Role.ADMIN, Role.MANAGER) else '')
+        + defects + '\n\n'
+        + comment + '\n\n'
+        + date_time + '\n'
+        + order
     )
 
 def get_confirm_message_to_other_admin(user_username: str, user_role: Role, order_id: int, text: str) -> str:

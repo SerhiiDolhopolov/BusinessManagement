@@ -10,6 +10,7 @@ def get_func_get_defects_diagram_data(defects_diagram_data: str) -> str:
         }}
     """
 
+
 def get_func_show_defects_diagram_by_dates_filter() -> str:
     return """
         function showDefectsDiagramByDatesFilter(startDate, endDate) 
@@ -24,6 +25,7 @@ def get_func_show_defects_diagram_by_dates_filter() -> str:
         }
     """
 
+
 def get_func_show_defects_diagram_by_dates() -> str:
     return """
         function showDefectsDiagramByDates() 
@@ -32,6 +34,7 @@ def get_func_show_defects_diagram_by_dates() -> str:
             showDefectsDiagram(data)
         }
     """
+
 
 def get_func_show_defects_diagram(defects_diagram_layout: str, currency: str) -> str:
     return f"""

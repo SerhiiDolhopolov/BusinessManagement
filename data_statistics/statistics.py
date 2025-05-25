@@ -8,7 +8,6 @@ import plotly.express as px
 import plotly.io as pio
 
 from database.database import DB
-
 from UI import UI_statistics
 
 
@@ -82,7 +81,9 @@ class Statistics(ABC):
 
     @abstractmethod
     def _get_grouped_data(self, df: pd.DataFrame) -> pd.DataFrame:
-        raise NotImplementedError('Implement _get_groped_data(df) method with return pandas.DataFrame')
+        raise NotImplementedError(
+            'Implement _get_groped_data(df) method with return pandas.DataFrame'
+        )
 
     @abstractmethod
     def _get_figure(self) -> go.Figure:
@@ -90,8 +91,15 @@ class Statistics(ABC):
 
     @abstractmethod
     def _get_diagram(self, groped_data: pd.DataFrame) -> go.Figure:
-        raise NotImplementedError('Implement _get_diagram(grouped_data) method with return go.Figure')
+        raise NotImplementedError(
+            'Implement _get_diagram(grouped_data) method with return go.Figure'
+        )
 
     def _add_trace_color(self, groped_data: pd.DataFrame, column: str):
-        trace_colors = {key: color for key, color in zip(groped_data[column].unique(), px.colors.qualitative.Plotly)}
+        trace_colors = {
+            key: color
+            for key, color in zip(
+                groped_data[column].unique(), px.colors.qualitative.Plotly
+            )
+        }
         groped_data['trace_color'] = groped_data[column].map(trace_colors)

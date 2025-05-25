@@ -1,3 +1,5 @@
+import re
+
 from aiogram import Router, F
 from aiogram.types import CallbackQuery
 
@@ -6,7 +8,7 @@ from database.users_db import UsersDB, Role
 from UI.menu import UI_users_page
 from UI.commands import UI_commands
 
-import re, handlers.keyboards as keyboards
+import handlers.keyboards as keyboards
 from decorators import delete_callback_message, is_user_role_admin
 from bot import bot
 

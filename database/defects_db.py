@@ -20,21 +20,28 @@ class DefectsDB(DB):
         }
 
     def add_defect(self, defect: str):
-        self._insert_data(self.TABLE_NAME, {
-            self.defect: defect,
-            self.PRIORITY: 0
-        })
+        self._insert_data(
+            self.TABLE_NAME,
+            {
+                self.defect: defect,
+                self.PRIORITY: 0
+            }
+        )
 
     def get_defects(self, limit: int = 0, offset: int = 0) -> dict[int, str]:
         """RETURNS {defect_id:defect}"""
-        answer = self._fetchall(f"""SELECT {self.ID}, {self.defect} 
-                                FROM {self.TABLE_NAME} 
-                                ORDER BY {self.PRIORITY} DESC
-                                {f"LIMIT {limit} OFFSET {offset}" if limit else ''};""")
+        answer = self._fetchall(
+            f"""SELECT {self.ID}, {self.defect} 
+            FROM {self.TABLE_NAME} 
+            ORDER BY {self.PRIORITY} DESC
+            {f"LIMIT {limit} OFFSET {offset}" if limit else ''};"""
+        )
         return {line[0]: line[1] for line in answer}
 
     def get_defect(self, id: int) -> str:
-        answer = self._fetchone(f"""SELECT {self.defect} FROM {self.TABLE_NAME} WHERE {self.ID} = {id};""")
+        answer = self._fetchone(
+            f"""SELECT {self.defect} FROM {self.TABLE_NAME} WHERE {self.ID} = {id};"""
+        )
         return answer[0]
 
     def delete_defect(self, id: int):

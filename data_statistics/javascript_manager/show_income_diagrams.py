@@ -1,4 +1,6 @@
-def get_func_get_income_diagram_figure_by_dates(income_diagram_figure_by_dates: str) -> str:
+def get_func_get_income_diagram_figure_by_dates(
+    income_diagram_figure_by_dates: str,
+) -> str:
     return f"""
         function getIncomeDiagramFigureByDates()
         {{
@@ -7,6 +9,7 @@ def get_func_get_income_diagram_figure_by_dates(income_diagram_figure_by_dates: 
         }}
     """
 
+
 def get_func_show_income_diagram_by_dates_filter() -> str:
     return """
         function showIncomeDiagramByDatesFilter(startDate, endDate) 
@@ -14,29 +17,38 @@ def get_func_show_income_diagram_by_dates_filter() -> str:
             showIncomeDiagram(getIncomeDiagramFigureByDates(), true, startDate, endDate)
         }
     """
+
+
 def get_func_show_income_diagram_by_dates() -> str:
     return """
         function showIncomeDiagramByDates() 
         {
             showIncomeDiagram(getIncomeDiagramFigureByDates())
         }
-        """
+    """
 
-def get_func_show_income_diagram_by_months(income_diagram_figure_by_months: str) -> str:
+
+def get_func_show_income_diagram_by_months(
+    income_diagram_figure_by_months: str,
+) -> str:
     return f"""
         function showIncomeDiagramByMonths() 
         {{
             showIncomeDiagram({income_diagram_figure_by_months})
         }}
-        """
+    """
 
-def get_func_show_income_diagram_by_years(income_diagram_figure_by_years: str) -> str:
+
+def get_func_show_income_diagram_by_years(
+    income_diagram_figure_by_years: str,
+) -> str:
     return f"""
         function showIncomeDiagramByYears() 
         {{
             showIncomeDiagram({income_diagram_figure_by_years})
         }}
-        """
+    """
+
 
 def get_func_show_income_diagram(currency: str) -> str:
     return f"""

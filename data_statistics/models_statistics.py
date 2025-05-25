@@ -34,8 +34,8 @@ class ModelsStatistics(Statistics):
     ROW_NUMBER() OVER (PARTITION BY {StatusesDB.ORDER_ID} ORDER BY {StatusesDB.DATE_TIME} DESC) AS rn FROM {StatusesDB.TABLE_NAME}
     JOIN {OrdersDB.TABLE_NAME} USING ({OrdersDB.ID})
     JOIN {PhonesDB.TABLE_NAME} USING ({PhonesDB.ID})
-)
-SELECT {OrdersDB.ID}, {OrdersDB.PRICE_PURCHASE}, {OrdersDB.PRICE_SELLING}, {OrdersDB.CHARGES}, 
+    )
+    SELECT {OrdersDB.ID}, {OrdersDB.PRICE_PURCHASE}, {OrdersDB.PRICE_SELLING}, {OrdersDB.CHARGES}, 
     {PhonesDB.MODEL},
     {StatusesDB.DATE_TIME}
     FROM LatestStatusess

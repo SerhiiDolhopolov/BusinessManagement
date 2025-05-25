@@ -1,4 +1,5 @@
 from pathlib import Path
+
 import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
@@ -53,7 +54,9 @@ class DeffectsStaticts(Statistics):
         self._fill_na_0(df, 'price_purchase')
         self._fill_na_0(df, 'charges')
 
-    def _get_grouped_data(self, df: pd.DataFrame, group_by: str, query: str = None) -> pd.DataFrame:
+    def _get_grouped_data(
+        self, df: pd.DataFrame, group_by: str, query: str = None
+    ) -> pd.DataFrame:
         data = df.query(query) if query else df
         data = data \
             .groupby(group_by, as_index=False) \
@@ -63,23 +66,28 @@ class DeffectsStaticts(Statistics):
                 orders_count=('order_id', 'nunique')
                        ) \
             .sort_values(group_by)
-        data['income_sum'] = data.price_selling_sum - (data.price_purchase_sum + data.charges_sum)
+        data['income_sum'] = (
+            data.price_selling_sum - (data.price_purchase_sum + data.charges_sum)
+        )
         return data
 
     def _get_figure(self) -> go.Figure:
         fig = make_subplots(
-            rows=2, cols=1,
+            rows=2,
+            cols=1,
             subplot_titles=('Income Sum', 'Defects Count'),
-            shared_xaxes=True
+            shared_xaxes=True,
         )
 
-        fig.update_layout(hovermode='x unified', plot_bgcolor='white', xaxis=dict(showspikes=False))
+        fig.update_layout(
+            hovermode='x unified',
+            plot_bgcolor='white',
+            xaxis=dict(showspikes=False),
+        )
         fig.update_xaxes(
-            tickfont=dict(
-                size=14,
-            ),
+            tickfont=dict(size=14),
             showline=True,
-            linecolor='black'
+            linecolor='black',
         )
         return fig
 

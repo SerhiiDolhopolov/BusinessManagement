@@ -98,34 +98,45 @@ class IncomeStatistics(Statistics):
         charges_sum = grouped_data.charges_sum
         income_sum = grouped_data.income_sum
 
-        fig.add_trace(go.Scatter(
-            x=x, 
-            y=price_selling_sum, 
-            name=UI_statistics.get_income(), 
-            line=dict(color='blue'),
-            mode='lines+markers',
-            hovertemplate=f'<span style="color:green;">%{{y:,.2f}} {currency}</span><br><br>',
-            visible='legendonly'
-        ))
+        fig.add_trace(
+            go.Scatter(
+                x=x,
+                y=price_selling_sum,
+                name=UI_statistics.get_income(),
+                line=dict(color='blue'),
+                mode='lines+markers',
+                hovertemplate=f'<span style="color:green;">%{{y:,.2f}} {currency}</span><br><br>',
+                visible='legendonly'
+            )
+        )
 
-        fig.add_trace(go.Scatter(
-            x=x, 
-            y=(price_purchase_sum + charges_sum), 
-            name=UI_statistics.get_spent(), 
-            line=dict(color='red'),
-            mode='lines+markers',
-            hovertemplate=f'<span style="color:red;">%{{y:,.2f}} {currency} (%{{customdata[0]:.2f}}%)</span>' + 
-            f'<br>{UI_statistics.get_price_purchase()}: <span style="color:red;">%{{customdata[1]:,.2f}} {currency} (%{{customdata[2]:.2f}}%)</span>' + 
-            f'<br>{UI_statistics.get_charges()}: <span style="color:red;">%{{customdata[3]:,.2f}} {currency} (%{{customdata[4]:.2f}}%)</span>',
-            customdata=[( 
-                        (price_purchase + charge) / price_selling * 100, 
-                        price_purchase, price_purchase / price_selling * 100, 
-                        charge, charge / price_selling * 100
-                        ) 
-                        for price_selling, price_purchase, charge
-                        in zip(price_selling_sum, price_purchase_sum, charges_sum)],
-            visible='legendonly'
-        ))
+        fig.add_trace(
+            go.Scatter(
+                x=x,
+                y=(price_purchase_sum + charges_sum),
+                name=UI_statistics.get_spent(),
+                line=dict(color='red'),
+                mode='lines+markers',
+                hovertemplate=(
+                    f'<span style="color:red;">%{{y:,.2f}} {currency} (%{{customdata[0]:.2f}}%)</span>'
+                    f'<br>{UI_statistics.get_price_purchase()}: <span style="color:red;">%{{customdata[1]:,.2f}} {currency} (%{{customdata[2]:.2f}}%)</span>'
+                    f'<br>{UI_statistics.get_charges()}: <span style="color:red;">%{{customdata[3]:,.2f}} {currency} (%{{customdata[4]:.2f}}%)</span>'
+                ),
+                customdata=[
+                    (
+                        (price_purchase + charge) / price_selling * 100,
+                        price_purchase,
+                        price_purchase / price_selling * 100,
+                        charge,
+                        charge / price_selling * 100,
+                    )
+                    for price_selling, price_purchase, charge in zip(
+                        price_selling_sum, price_purchase_sum, charges_sum
+                    )
+                ],
+                visible='legendonly'
+            )
+        )
 
         fig.add_trace(go.Scatter(
             x=x,

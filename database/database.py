@@ -2,6 +2,7 @@ import sqlite3
 from abc import ABC, abstractmethod
 from pathlib import Path
 from datetime import datetime
+
 from bot import DATE_TIME_FORMAT, TEMP_PATH, SETTINGS_PATH
 import logging
 
@@ -10,7 +11,7 @@ class DB(ABC):
     __instances = {}
     DB_NAME = SETTINGS_PATH / 'database.db'
 
-    def __new__(cls, *args, **kwargs):    
+    def __new__(cls, *args, **kwargs):
         if cls not in cls.__instances:
             instance = super().__new__(cls)
             cls.__instances[cls] = instance
@@ -24,8 +25,10 @@ class DB(ABC):
         self.connection.close()
 
     @abstractmethod
-    def get_columns(self) -> dict[str,str]:
-        raise NotImplementedError('Implement get_columns() method with return dict[column_name, column_creation]')
+    def get_columns(self) -> dict[str, str]:
+        raise NotImplementedError(
+            'Implement get_columns() method with return dict[column_name, column_creation]'
+        )
 
     @staticmethod
     def sql(value: any) -> str:
@@ -57,24 +60,36 @@ class DB(ABC):
         fetchall = self._execute(request).fetchall()
         return fetchall if fetchall else []
 
-    def _create_table(self, table_name: str, columns: dict[str, any], additional_expressions:list[str] = None):
+    def _create_table(
+        self, table_name: str, columns: dict[str, any], additional_expressions: list[str] = None
+    ):
         if hasattr(self, "_table_created"):
             return
         self._table_created = True
-        columns_definition = ',\n'.join([f"{name} {definition}" for name, definition in columns.items()])
+        columns_definition = ',\n'.join(
+            [f"{name} {definition}" for name, definition in columns.items()]
+        )
         additional_expressions = list() if additional_expressions is None else additional_expressions
         additional = (',' + ',\n'.join(additional_expressions)) if additional_expressions else ''
 
-        self._execute(f"""CREATE TABLE IF NOT EXISTS {table_name}(
-{columns_definition}
-{additional});""")
+        self._execute(
+            f"""CREATE TABLE IF NOT EXISTS {table_name}(
+            {columns_definition}
+            {additional});"""
+        )
 
     def _insert_data(self, table_name: str, column_value: dict[str, any]) -> sqlite3.Cursor:
-        return self._execute(f"""INSERT OR REPLACE INTO {table_name} ({', '.join(column_value.keys())}) VALUES 
-                     ({', '.join(DB.sql(x) for x in list(column_value.values()))});""")
+        return self._execute(
+            f"""INSERT OR REPLACE INTO {table_name} ({', '.join(column_value.keys())}) VALUES 
+            ({', '.join(DB.sql(x) for x in list(column_value.values()))});"""
+        )
 
-    def _update_data(self, table_name: str, column: str, value: str, where: str = '') -> sqlite3.Cursor:
-        return self._execute(f"""UPDATE {table_name} SET {column} = {DB.sql(value)} {where};""")
+    def _update_data(
+        self, table_name: str, column: str, value: str, where: str = ''
+    ) -> sqlite3.Cursor:
+        return self._execute(
+            f"""UPDATE {table_name} SET {column} = {DB.sql(value)} {where};"""
+        )
 
     def _delete_data(self, table_name: str, where: str = '') -> sqlite3.Cursor:
         return self._execute(f"""DELETE FROM {table_name} {where}""")

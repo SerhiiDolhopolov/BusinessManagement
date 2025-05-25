@@ -1,26 +1,26 @@
 from datetime import datetime
-from bot import DATE_TIME_FORMAT
 
+from bot import DATE_TIME_FORMAT
 from UI import UI_descriptors
 
 
 class DateTime:
     """Try convert input value to DateTime, if can't then None
 
-        Using: 
-            1.Set own class argument with calling class object
+    Using:
+        1. Set own class argument with calling class object
+        2. Set self argument with value
 
-            2.Set self argument with value
+    Example:
+        class A:
+            x = DateTimeOrNone(format)
 
-        Example:
-            class A:
-                x = DateTimeOrNone(format)
+            def __init__(self, x):
+                self.x = x
 
-                def __init__(self, x):
-                    self.x = x          
-        Args:
-            can_be_none: default False
-        """
+    Args:
+        can_be_none: default False
+    """
 
     def __init__(self, can_be_none: bool = False):
         self.__format = DATE_TIME_FORMAT

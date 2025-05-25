@@ -10,6 +10,7 @@ def get_func_get_users_diagram_data(users_diagram_data: str) -> str:
         }}
     """
 
+
 def get_func_show_users_diagram_by_dates_filter() -> str:
     return """
         function showUsersDiagramByDatesFilter(startDate, endDate) 
@@ -24,6 +25,7 @@ def get_func_show_users_diagram_by_dates_filter() -> str:
         }
     """
 
+
 def get_func_show_users_diagram_by_dates() -> str:
     return """
         function showUsersDiagramByDates() 
@@ -32,6 +34,7 @@ def get_func_show_users_diagram_by_dates() -> str:
             showUsersDiagram(data)
         }
     """
+
 
 def get_func_show_users_diagram(users_diagram_layout: str, currency: str) -> str:
     return f"""

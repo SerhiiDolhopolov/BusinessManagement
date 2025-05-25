@@ -19,8 +19,13 @@ class OrdersDB(DB):
 
     def __init__(self):
         super().__init__()
-        self._create_table(self.TABLE_NAME, self.get_columns(), [
-            f"FOREIGN KEY ({self.PHONE_ID}) REFERENCES {PhonesDB.TABLE_NAME} ({PhonesDB.ID})"])
+        self._create_table(
+            self.TABLE_NAME,
+            self.get_columns(),
+            [
+                f"FOREIGN KEY ({self.PHONE_ID}) REFERENCES {PhonesDB.TABLE_NAME} ({PhonesDB.ID})"
+            ]
+        )
 
     def get_columns(self):
         return {
@@ -29,22 +34,27 @@ class OrdersDB(DB):
             self.PRICE_PURCHASE: 'REAL',
             self.PRICE_SELLING: 'REAL',
             self.CHARGES: 'REAL',
-        }    
+        }
 
     def add_order(self, phone_id: int, price_purchase: float) -> int:
         """RETURNS order_id"""
-        return self._insert_data(self.TABLE_NAME, {
-            self.PHONE_ID: phone_id,
-            self.PRICE_PURCHASE: price_purchase
-        }).lastrowid
+        return self._insert_data(
+            self.TABLE_NAME,
+            {
+                self.PHONE_ID: phone_id,
+                self.PRICE_PURCHASE: price_purchase
+            }
+        ).lastrowid
 
     def get_order(self, order_id: int) -> Order:
         from database.orders.statuses_db import StatusesDB
-        answer = self._fetchone(f"""SELECT {self.PRICE_PURCHASE}, {self.PRICE_SELLING}, {self.CHARGES},
-                                {StatusesDB.STATUS_TYPE}, {StatusesDB.COMMENT}, MAX({StatusesDB.DATE_TIME})
-                                FROM {self.TABLE_NAME} 
-                                JOIN {StatusesDB.TABLE_NAME} USING ({self.ID})
-                                WHERE {self.ID} = {DB.sql(order_id)};""")
+        answer = self._fetchone(
+            f"""SELECT {self.PRICE_PURCHASE}, {self.PRICE_SELLING}, {self.CHARGES},
+            {StatusesDB.STATUS_TYPE}, {StatusesDB.COMMENT}, MAX({StatusesDB.DATE_TIME})
+            FROM {self.TABLE_NAME}
+            JOIN {StatusesDB.TABLE_NAME} USING ({self.ID})
+            WHERE {self.ID} = {DB.sql(order_id)};"""
+        )
         if not answer:
             return None
         status = Status(StatusType(answer[3]))
@@ -57,27 +67,48 @@ class OrdersDB(DB):
         return order
 
     def get_phone_id(self, order_id: int) -> int:
-        answer = self._fetchone(f"""SELECT {OrdersDB.PHONE_ID} 
-                                FROM {OrdersDB.TABLE_NAME}
-                                WHERE {OrdersDB.ID} = {DB.sql(order_id)};""")
+        answer = self._fetchone(
+            f"""SELECT {OrdersDB.PHONE_ID}
+            FROM {OrdersDB.TABLE_NAME}
+            WHERE {OrdersDB.ID} = {DB.sql(order_id)};"""
+        )
         return None if not answer else int(answer[0])
 
     def get_order_id(self, phone_id: int) -> int:
-        answer = self._fetchone(f"""SELECT {OrdersDB.ID} 
-                                FROM {OrdersDB.TABLE_NAME}
-                                WHERE {OrdersDB.PHONE_ID} = {DB.sql(phone_id)};""")
+        answer = self._fetchone(
+            f"""SELECT {OrdersDB.ID}
+            FROM {OrdersDB.TABLE_NAME}
+            WHERE {OrdersDB.PHONE_ID} = {DB.sql(phone_id)};"""
+        )
         return None if not answer else int(answer[0])
 
     def update_price_purchase(self, order_id: int, price: float):
-        self._update_data(OrdersDB.TABLE_NAME, OrdersDB.PRICE_PURCHASE, price, f'WHERE {OrdersDB.ID} = {DB.sql(order_id)}')
+        self._update_data(
+            OrdersDB.TABLE_NAME,
+            OrdersDB.PRICE_PURCHASE,
+            price,
+            f'WHERE {OrdersDB.ID} = {DB.sql(order_id)}'
+        )
 
     def update_price_selling(self, order_id: int, price: float):
-        self._update_data(OrdersDB.TABLE_NAME, OrdersDB.PRICE_SELLING, price, f'WHERE {OrdersDB.ID} = {DB.sql(order_id)}')
+        self._update_data(
+            OrdersDB.TABLE_NAME,
+            OrdersDB.PRICE_SELLING,
+            price,
+            f'WHERE {OrdersDB.ID} = {DB.sql(order_id)}'
+        )
 
     def update_charges(self, order_id: int, price: float):
-        self._update_data(OrdersDB.TABLE_NAME, OrdersDB.CHARGES, price, f'WHERE {OrdersDB.ID} = {DB.sql(order_id)}')
+        self._update_data(
+            OrdersDB.TABLE_NAME,
+            OrdersDB.CHARGES,
+            price,
+            f'WHERE {OrdersDB.ID} = {DB.sql(order_id)}'
+        )
 
-    def get_statistics(self, status_type: StatusType = None, min_date: datetime = None) -> dict[str, any]:
+    def get_statistics(
+        self, status_type: StatusType = None, min_date: datetime = None
+    ) -> dict[str, any]:
         """RETURNS dict[name, value] with data:
         count of statuses
         min|avg|max|sum of price_purchase|price_selling|charges
@@ -85,31 +116,33 @@ class OrdersDB(DB):
         from database.orders.statuses_db import StatusesDB
         if min_date:
             min_date = min_date.replace(microsecond=0)
-        answer = self._fetchone(f"""SELECT COUNT({StatusesDB.STATUS_TYPE}),
-                                MIN(COALESCE({OrdersDB.PRICE_PURCHASE}, 0)),
-                                AVG(COALESCE({OrdersDB.PRICE_PURCHASE}, 0)),
-                                MAX(COALESCE({OrdersDB.PRICE_PURCHASE}, 0)),
-                                SUM(COALESCE({OrdersDB.PRICE_PURCHASE}, 0)),
+        answer = self._fetchone(
+            f"""SELECT COUNT({StatusesDB.STATUS_TYPE}),
+            MIN(COALESCE({OrdersDB.PRICE_PURCHASE}, 0)),
+            AVG(COALESCE({OrdersDB.PRICE_PURCHASE}, 0)),
+            MAX(COALESCE({OrdersDB.PRICE_PURCHASE}, 0)),
+            SUM(COALESCE({OrdersDB.PRICE_PURCHASE}, 0)),
 
-                                MIN(COALESCE({OrdersDB.PRICE_SELLING}, 0)),
-                                AVG(COALESCE({OrdersDB.PRICE_SELLING}, 0)),
-                                MAX(COALESCE({OrdersDB.PRICE_SELLING}, 0)),
-                                SUM(COALESCE({OrdersDB.PRICE_SELLING}, 0)),
+            MIN(COALESCE({OrdersDB.PRICE_SELLING}, 0)),
+            AVG(COALESCE({OrdersDB.PRICE_SELLING}, 0)),
+            MAX(COALESCE({OrdersDB.PRICE_SELLING}, 0)),
+            SUM(COALESCE({OrdersDB.PRICE_SELLING}, 0)),
 
-                                MIN(COALESCE({OrdersDB.CHARGES}, 0)),
-                                AVG(COALESCE({OrdersDB.CHARGES}, 0)),
-                                MAX(COALESCE({OrdersDB.CHARGES}, 0)),
-                                SUM(COALESCE({OrdersDB.CHARGES}, 0))
+            MIN(COALESCE({OrdersDB.CHARGES}, 0)),
+            AVG(COALESCE({OrdersDB.CHARGES}, 0)),
+            MAX(COALESCE({OrdersDB.CHARGES}, 0)),
+            SUM(COALESCE({OrdersDB.CHARGES}, 0))
 
-                                FROM {OrdersDB.TABLE_NAME}
-                                JOIN (SELECT {StatusesDB.ID}, {StatusesDB.USER_ID}, {StatusesDB.ORDER_ID}, 
-                                {StatusesDB.STATUS_TYPE}, {StatusesDB.COMMENT}, MAX({StatusesDB.DATE_TIME}) as date
-                                FROM {StatusesDB.TABLE_NAME}
-                                GROUP BY {OrdersDB.ID}) USING ({OrdersDB.ID})
-                                {'WHERE' if status_type or min_date else ''}
-                                {f"{StatusesDB.DATE_TIME} > {DB.sql(min_date)}" if min_date else ''}
-                                {'AND' if status_type and min_date else ''}
-                                {f"{StatusesDB.STATUS_TYPE} = {DB.sql(status_type)}" if status_type else ''};""")
+            FROM {OrdersDB.TABLE_NAME}
+            JOIN (SELECT {StatusesDB.ID}, {StatusesDB.USER_ID}, {StatusesDB.ORDER_ID},
+            {StatusesDB.STATUS_TYPE}, {StatusesDB.COMMENT}, MAX({StatusesDB.DATE_TIME}) as date
+            FROM {StatusesDB.TABLE_NAME}
+            GROUP BY {OrdersDB.ID}) USING ({OrdersDB.ID})
+            {'WHERE' if status_type or min_date else ''}
+            {f"{StatusesDB.DATE_TIME} > {DB.sql(min_date)}" if min_date else ''}
+            {'AND' if status_type and min_date else ''}
+            {f"{StatusesDB.STATUS_TYPE} = {DB.sql(status_type)}" if status_type else ''};"""
+        )
         if not answer or int(answer[0] == 0):
             return dict()
         result = {
@@ -129,24 +162,29 @@ class OrdersDB(DB):
         }
         return result
 
-    def get_orders_phones(self, status_type: StatusType = None, limit: int = 0, offset: int = 0) -> list[(int, Order), (int, Phone)]:
+    def get_orders_phones(
+        self, status_type: StatusType = None, limit: int = 0, offset: int = 0
+    ) -> list[(int, Order), (int, Phone)]:
         """RETURNS [(order_id, Order), (phone_id, Phone)]"""
         from database.orders.statuses_db import StatusesDB
-        answer = self._fetchall(f"""WITH LatestStatuses AS (SELECT {PhonesDB.ID}, {PhonesDB.MODEL}, {PhonesDB.COLOR}, 
-                            {PhonesDB.MEMORY}, {PhonesDB.BATTERY_STATUS}, 
-                            {StatusesDB.ID}, {StatusesDB.STATUS_TYPE}, {StatusesDB.COMMENT}, {StatusesDB.DATE_TIME},
-                            {OrdersDB.ID}, {OrdersDB.PRICE_PURCHASE}, {OrdersDB.PRICE_SELLING}, {OrdersDB.CHARGES},
-                            ROW_NUMBER() OVER (PARTITION BY {OrdersDB.ID} ORDER BY {StatusesDB.DATE_TIME} DESC) AS rn
-                            FROM {OrdersDB.TABLE_NAME}
-                            JOIN {PhonesDB.TABLE_NAME} USING ({PhonesDB.ID})
-                            JOIN {StatusesDB.TABLE_NAME} USING ({OrdersDB.ID})
-                            )
-                            SELECT *
-                            FROM LatestStatuses
-                            WHERE rn = 1
-                            {f'AND {StatusesDB.STATUS_TYPE} = {DB.sql(status_type)}' if status_type else ''}
-                            ORDER BY {StatusesDB.DATE_TIME} DESC
-                            {f"LIMIT {limit} OFFSET {offset}" if limit else ''};""")
+        answer = self._fetchall(
+            f"""WITH LatestStatuses AS (
+                SELECT {PhonesDB.ID}, {PhonesDB.MODEL}, {PhonesDB.COLOR},
+                {PhonesDB.MEMORY}, {PhonesDB.BATTERY_STATUS},
+                {StatusesDB.ID}, {StatusesDB.STATUS_TYPE}, {StatusesDB.COMMENT}, {StatusesDB.DATE_TIME},
+                {OrdersDB.ID}, {OrdersDB.PRICE_PURCHASE}, {OrdersDB.PRICE_SELLING}, {OrdersDB.CHARGES},
+                ROW_NUMBER() OVER (PARTITION BY {OrdersDB.ID} ORDER BY {StatusesDB.DATE_TIME} DESC) AS rn
+                FROM {OrdersDB.TABLE_NAME}
+                JOIN {PhonesDB.TABLE_NAME} USING ({PhonesDB.ID})
+                JOIN {StatusesDB.TABLE_NAME} USING ({OrdersDB.ID})
+            )
+            SELECT *
+            FROM LatestStatuses
+            WHERE rn = 1
+            {f'AND {StatusesDB.STATUS_TYPE} = {DB.sql(status_type)}' if status_type else ''}
+            ORDER BY {StatusesDB.DATE_TIME} DESC
+            {f"LIMIT {limit} OFFSET {offset}" if limit else ''};"""
+        )
         result = []
         if not answer:
             return result
@@ -165,20 +203,22 @@ class OrdersDB(DB):
             order.price_selling = line[11]
             order.charges = line[12]
             order.status = status
-            result.append( ((int(line[9]), order), (int(line[0]), phone)))
+            result.append(((int(line[9]), order), (int(line[0]), phone)))
         return result
 
     def get_order_phone(self, order_id: int) -> tuple[(int, Order), (int, Phone)]:
         """RETURNS ((order_id, Order), (phone_id, Phone))"""
         from database.orders.statuses_db import StatusesDB
-        answer = self._fetchone(f"""SELECT {PhonesDB.ID}, {PhonesDB.MODEL}, {PhonesDB.COLOR}, {PhonesDB.MEMORY}, {PhonesDB.BATTERY_STATUS}, 
-                       {StatusesDB.ID}, {StatusesDB.STATUS_TYPE}, {StatusesDB.COMMENT}, MAX({StatusesDB.DATE_TIME}) AS max_date,
-                       {OrdersDB.ID}, {OrdersDB.PRICE_PURCHASE}, {OrdersDB.PRICE_SELLING}, {OrdersDB.CHARGES}
-                       FROM {OrdersDB.TABLE_NAME}
-                       JOIN {PhonesDB.TABLE_NAME} USING ({OrdersDB.PHONE_ID})
-                       JOIN {StatusesDB.TABLE_NAME} USING ({OrdersDB.ID})
-                       WHERE {OrdersDB.ID} = {DB.sql(order_id)};
-                       """)
+        answer = self._fetchone(
+            f"""SELECT {PhonesDB.ID}, {PhonesDB.MODEL}, {PhonesDB.COLOR}, {PhonesDB.MEMORY}, {PhonesDB.BATTERY_STATUS},
+            {StatusesDB.ID}, {StatusesDB.STATUS_TYPE}, {StatusesDB.COMMENT}, MAX({StatusesDB.DATE_TIME}) AS max_date,
+            {OrdersDB.ID}, {OrdersDB.PRICE_PURCHASE}, {OrdersDB.PRICE_SELLING}, {OrdersDB.CHARGES}
+            FROM {OrdersDB.TABLE_NAME}
+            JOIN {PhonesDB.TABLE_NAME} USING ({OrdersDB.PHONE_ID})
+            JOIN {StatusesDB.TABLE_NAME} USING ({OrdersDB.ID})
+            WHERE {OrdersDB.ID} = {DB.sql(order_id)};
+            """
+        )
         if not answer[0]:
             return None
         phone = Phone(answer[1])

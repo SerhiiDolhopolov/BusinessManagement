@@ -6,10 +6,8 @@ from data_statistics.javascript_manager.show_income_diagrams import *
 from data_statistics.javascript_manager.show_defects_diagrams import *
 from data_statistics.javascript_manager.show_models_diagrams import *
 from data_statistics.javascript_manager.show_users_diagram import *
-
 from data_statistics.html_manager.html_header import get_html_header
 from data_statistics.html_manager.html_body import get_html_body
-
 from data_statistics.income_statistics import IncomeStatistics
 from data_statistics.models_statistics import ModelsStatistics
 from data_statistics.defects_statistics import DeffectsStaticts

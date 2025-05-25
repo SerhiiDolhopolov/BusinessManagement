@@ -9,11 +9,15 @@ class SolvedPhonesDefectsDB(DB):
     defect = 'defect'
 
     def __init__(self):
-        super().__init__()        
+        super().__init__()
 
-        self._create_table(self.TABLE_NAME, self.get_columns(), [
-            f"FOREIGN KEY ({self.PHONE_ID}) REFERENCES {PhonesDB.TABLE_NAME} ({PhonesDB.ID})",
-        ])
+        self._create_table(
+            self.TABLE_NAME,
+            self.get_columns(),
+            [
+                f"FOREIGN KEY ({self.PHONE_ID}) REFERENCES {PhonesDB.TABLE_NAME} ({PhonesDB.ID})"
+            ]
+        )
 
     def get_columns(self):
         return {
@@ -22,8 +26,10 @@ class SolvedPhonesDefectsDB(DB):
         }
 
     def add_defect(self, phone_id: int, defect: str):
-        self._insert_data(self.TABLE_NAME, {self.PHONE_ID: phone_id,
-                                            self.defect: defect})
+        self._insert_data(
+            self.TABLE_NAME,
+            {self.PHONE_ID: phone_id, self.defect: defect}
+        )
 
     def add_defects(self, phone_id: int, defects: list[str]):
         for defect in defects:
