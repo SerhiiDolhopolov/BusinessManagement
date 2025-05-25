@@ -35,16 +35,16 @@
     - [Profit/quantity graph relative to models sold](#profitquantity-graph-relative-to-models-sold)
     - [Profit/quantity graph relative to corrected defects of sold models](#profitquantity-graph-relative-to-corrected-defects-of-sold-models)
     - [Revenue/quantity graph vs number of phone sold by users who downloaded them](#revenuequantity-graph-vs-number-of-phone-sold-by-users-who-downloaded-them)
-- [To start the project](#to-start-the-project)
+- [Getting Started](#getting-started)
 
-# Introduction
+## Introduction
 
 This project is a commercial CRM system implemented as a Telegram Bot, designed to streamline the management of processes involved in buying used phones, repairing them, and selling them. The system leverages auto-generated statistics with interactive diagrams powered by [Plotly](https://plotly.com/) for enhanced data visualization.
 
 The project was created when I started learning Python. It uses plain SQL as well, without an ORM.
 
-# Screenshots
-## Menu panels by role
+## Screenshots
+### Menu panels by role
 <table>
   <tr>
     <td align="center">
@@ -66,7 +66,7 @@ The project was created when I started learning Python. It uses plain SQL as wel
   </tr>
 </table>
 
-## Menu
+### Menu
 <table>
   <tr>
     <td align="center">
@@ -81,23 +81,23 @@ The project was created when I started learning Python. It uses plain SQL as wel
 </table>
 
 
-## Statistic by [Plotly](https://plotly.com/)
-### Statistic menu and summary statistic
+### Statistic by [Plotly](https://plotly.com/)
+#### Statistic menu and summary statistic
 ![Statistic](images/statistic1.png)
 
-### Chart of profit relative to phones sold
+#### Chart of profit relative to phones sold
 ![Statistic](images/statistic2.png)
 
-### Profit/quantity graph relative to models sold
+#### Profit/quantity graph relative to models sold
 ![Statistic](images/statistic3.png)
 
-### Profit/quantity graph relative to corrected defects of sold models
+#### Profit/quantity graph relative to corrected defects of sold models
 ![Statistic](images/statistic4.png)
 
-### Revenue/quantity graph vs number of phone sold by users who downloaded them
+#### Revenue/quantity graph vs number of phone sold by users who downloaded them
 ![Statistic](images/statistic5.png)
 
-# To start the project
+## Getting Started
 1. **Rename** `.env example` to `.env` and set your variables.
 2. **Install dependencies** (if not yet):
    ```sh
