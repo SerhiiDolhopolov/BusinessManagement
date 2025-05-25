@@ -10,9 +10,9 @@
 
 <!-- omit in toc -->
 ## Frameworks
-[![aiogram](https://img.shields.io/badge/aiogram-3.17.0-d6123c?color=white&labelColor=d6123c)](#)
-[![pandas](https://img.shields.io/badge/pandas-2.2.3-d6123c?color=white&labelColor=d6123c)](#)
-[![plotly](https://img.shields.io/badge/plotly-5.24.1-d6123c?color=white&labelColor=d6123c)](#)
+[![aiogram](https://img.shields.io/badge/aiogram-3.17.0-d6123c?logo=telegram&logoColor=white&color=white&labelColor=d6123c)](#)
+[![pandas](https://img.shields.io/badge/pandas-2.2.3-d6123c?logo=pandas&logoColor=white&color=white&labelColor=d6123c)](#)
+[![plotly](https://img.shields.io/badge/plotly-5.24.1-d6123c?logo=plotly&logoColor=white&color=white&labelColor=d6123c)](#)
 
 ---
 
