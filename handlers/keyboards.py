@@ -11,6 +11,7 @@ users_DB = UsersDB()
 def get_back_button(callback: str) -> InlineKeyboardButton:
     return InlineKeyboardButton(text=UI_navigation.get_back_button(), callback_data=callback)
 
+
 def get_pagination_keyboard(
     page: int, callback_info: str, obj_count_on_page: int, obj_count: int
 ) -> InlineKeyboardMarkup:
@@ -20,6 +21,7 @@ def get_pagination_keyboard(
     )
     keyboard_builder.row(get_back_button('menu|show|'))
     return keyboard_builder.as_markup()
+
 
 def get_pagination_row(
     page: int, callback_info: str, obj_count_on_page: int, obj_count: int
@@ -48,6 +50,7 @@ def get_pagination_row(
             )
         )
     return buttons
+
 
 def get_change_role_keyboard(user_id: int) -> InlineKeyboardMarkup:
     keyboard_builder = InlineKeyboardBuilder()

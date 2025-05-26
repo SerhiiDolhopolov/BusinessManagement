@@ -31,6 +31,7 @@ async def show_users(callback: CallbackQuery):
                            reply_markup=keyboards.get_pagination_keyboard(page, 'users|show|', 
                            users_count_on_page, all_users_count))
 
+
 @router.callback_query(F.data.regexp(r'users\|show_couriers\|page:(\d+)'))
 @delete_callback_message
 @is_user_role_admin
@@ -43,6 +44,7 @@ async def show_courier_users(callback: CallbackQuery):
                            reply_markup=keyboards.get_pagination_keyboard(page, 'users|show_couriers|', 
                            users_count_on_page, all_couriers_users_count))
 
+
 @router.callback_query(F.data.regexp(r'users\|show_managers\|page:(\d+)'))
 @delete_callback_message
 @is_user_role_admin
@@ -54,6 +56,7 @@ async def show_manager_users(callback: CallbackQuery):
     await bot.send_message(callback.from_user.id, UI_users_page.get_managers_text(users), parse_mode='HTML',
                            reply_markup=keyboards.get_pagination_keyboard(page, 'users|show_managers|', 
                            users_count_on_page, all_managers_users_count))
+
 
 @router.callback_query(F.data.regexp(r'user\|set_role\|id:(\d+)&role:(.+)'))
 @delete_callback_message
