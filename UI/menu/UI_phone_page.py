@@ -7,6 +7,7 @@ from models.order import Order
 from models.phone import Phone
 
 from UI.language_resources import LanguageResources
+from UI_base import get_text
 from bot import MEMORY_DIMENSION, CURRENCY, format_money
 
 
@@ -29,19 +30,19 @@ def get_info(order: Order, order_id: int, phone: Phone, role: Role) -> str:
         f"<code>{html.escape(phone.model)} {phone.memory}{MEMORY_DIMENSION} | "
         f"{html.escape(phone.color)}</code>"
     )
-    title = __phone_page.get('title').format(status_emoji=status_emoji, title=title)
+    title = get_text(__phone_page, 'title', status_emoji=status_emoji, title=title)
 
     battery_status = f"<code>{phone.battery_status}%</code>"
-    battery_status = __phone_page.get('battery_status').format(battery_status=battery_status)
+    battery_status = get_text(__phone_page, 'battery_status', battery_status=battery_status)
 
     price_purchase = f"<code>{format_money(order.price_purchase)} {CURRENCY}</code>"
-    price_purchase = __phone_page.get('price_purchase').format(price_purchase=price_purchase)
+    price_purchase = get_text(__phone_page, 'price_purchase', price_purchase=price_purchase)
 
     charges = f"<code>{format_money(order.charges)} {CURRENCY}</code>"
-    charges = __phone_page.get('charges').format(charges=charges)
+    charges = get_text(__phone_page, 'charges', charges=charges)
 
     price_selling = f"<code>{format_money(order.price_selling)} {CURRENCY}</code>"
-    price_selling = __phone_page.get('price_selling').format(price_selling=price_selling)
+    price_selling = get_text(__phone_page, 'price_selling', price_selling=price_selling)
 
     ps = float(order.price_selling if order.price_selling else 0)
     pp = float(order.price_purchase if order.price_purchase else 0)
@@ -49,27 +50,27 @@ def get_info(order: Order, order_id: int, phone: Phone, role: Role) -> str:
     profit_count = ps - pp - ch
 
     profit = f"<code>{format_money(profit_count)} {CURRENCY}</code>"
-    profit = __phone_page.get('profit').format(profit=profit)
+    profit = get_text(__phone_page, 'profit', profit=profit)
 
     defects = (
         "-"
         if not phone.get_defects()
         else f"<pre>{html.escape(chr(10).join(f'- {defect}' for defect in phone.get_defects()))}</pre>"
     )
-    defects = __phone_page.get('defects').format(defects=defects)
+    defects = get_text(__phone_page, 'defects', defects=defects)
 
     comment = (
         "-"
         if not order.status.comment
         else f"<pre>{html.escape(str(order.status.comment))}</pre>"
     )
-    comment = __phone_page.get('comment').format(comment=comment)
+    comment = get_text(__phone_page, 'comment', comment=comment)
 
     date_time = f"<code>{html.escape(str(order.status.get_str_date_time()))}</code>"
-    date_time = __phone_page.get('date_time').format(date_time=date_time)
+    date_time = get_text(__phone_page, 'date_time', date_time=date_time)
 
     order = f"<code>{html.escape(str(order_id))}</code>"
-    order = __phone_page.get('order').format(order=order)
+    order = get_text(__phone_page, 'order', order=order)
 
     return (
         title + '\n\n'

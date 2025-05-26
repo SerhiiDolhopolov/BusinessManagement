@@ -18,6 +18,7 @@ from models.status import StatusType
 import handlers.keyboards as keyboards
 from bot import bot, TEMP_PATH, CURRENCY
 
+
 router = Router()
 
 

@@ -7,6 +7,7 @@ from database.users_db import UsersDB, Role
 
 users_DB = UsersDB()
 
+
 def get_back_button(callback: str) -> InlineKeyboardButton:
     return InlineKeyboardButton(text=UI_navigation.get_back_button(), callback_data=callback)
 

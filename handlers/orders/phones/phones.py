@@ -22,6 +22,7 @@ from models.status import StatusManager, StatusType
 import handlers.keyboards as keyboards
 import handlers.orders.phones.phones_manager as phones_manager
 
+
 router = Router()
 obj_count_on_page = 10
 

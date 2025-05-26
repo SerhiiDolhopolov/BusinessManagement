@@ -13,6 +13,7 @@ from decorators import delete_callback_message, delete_message, is_user_role_adm
 from handlers.admin_menu.admin_menu_keyboards import get_show_objects_keyboard
 from bot import bot, MEMORY_DIMENSION
 
+
 router = Router()
 memories_DB = MemoriesDB()
 obj_count_on_page = 10

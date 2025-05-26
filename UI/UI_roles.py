@@ -1,20 +1,21 @@
 from UI.language_resources import LanguageResources
+from UI_base import get_text
 
 
 __roles = LanguageResources().roles
 
 
 def get_user() -> str:
-    return __roles.get('user')
+    return get_text(__roles, 'user')
 
 
 def get_courier() -> str:
-    return __roles.get('courier')
+    return get_text(__roles, 'courier')
 
 
 def get_manager() -> str:
-    return __roles.get('manager')
+    return get_text(__roles, 'manager')
 
 
 def get_admin() -> str:
-    return __roles.get('admin')
+    return get_text(__roles, 'admin')

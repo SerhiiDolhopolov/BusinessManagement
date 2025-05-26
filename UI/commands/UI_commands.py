@@ -1,9 +1,11 @@
 from datetime import datetime
 
 from UI.language_resources import LanguageResources
+from UI_base import get_text
 from models.status import StatusType
 from database.users_db import Role
 from bot import TIMEZONE, DATE_FORMAT_VISIBLE, CURRENCY, format_money
+
 
 __commands = LanguageResources().commands
 __role = __commands['role']
@@ -14,52 +16,50 @@ __backup = __commands['backup']
 
 
 def get_ask_role() -> str:
-    return __role.get('ask')
+    return get_text(__role, 'ask')
 
 
 def get_select_role(username: str) -> str:
-    return __role.get('select').format(username=username)
+    return get_text(__role, 'select', username=username)
 
 
 def get_change_role_message_for_admin(username: str, old_role: Role, role: Role) -> str:
-    return __role.get('change_role_message_for_admin').format(
-        username=username, old_role=old_role, role=role
-    )
+    return get_text(__role, 'change_role_message_for_admin', username=username, old_role=old_role, role=role)
 
 
 def get_change_role_message_for_other_admins(
     admin_username: str, username: str, old_role: Role, role: Role
 ) -> str:
-    return __role.get('change_role_message_for_other_admins').format(
-        admin_username=admin_username,
-        username=username,
-        old_role=old_role,
-        role=role
-    )
+    return get_text(__role, 'change_role_message_for_other_admins',
+                    admin_username=admin_username,
+                    username=username,
+                    old_role=old_role,
+                    role=role
+                    )
 
 
 def get_change_role_message_for_user(role: Role) -> str:
-    return __role.get('change_role_message_for_user').format(role=role)
+    return get_text(__role, 'change_role_message_for_user', role=role)
 
 
 def get_role_exception_user_not_exist() -> str:
-    return __role_exception.get('user_not_exist')
+    return get_text(__role_exception, 'user_not_exist')
 
 
 def get_role_exception_not_correct_id() -> str:
-    return __role_exception.get('not_correct_id')
+    return get_text(__role_exception, 'not_correct_id')
 
 
 def get_ask_order() -> str:
-    return __order.get('ask')
+    return get_text(__order, 'ask')
 
 
 def get_order_exception_order_not_exist() -> str:
-    return __order_exception.get('order_not_exist')
+    return get_text(__order_exception, 'order_not_exist')
 
 
 def get_order_exception_not_correct_id() -> str:
-    return __order_exception.get('not_correct_id')
+    return get_text(__order_exception, 'not_correct_id')
 
 
 def get_backup_info(
@@ -83,7 +83,8 @@ def get_backup_info(
     spent_on_charges = f"<code>{format_money(charges_sum)} {CURRENCY}</code>"
     spent = f"<code>{format_money(price_purchase_sum + charges_sum)} {CURRENCY}</code>"
 
-    return __backup.get('info').format(
+    return get_text(
+        __backup, 'info',
         date=date,
         statuses=statuses,
         profit=profit,

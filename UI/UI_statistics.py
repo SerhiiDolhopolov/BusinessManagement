@@ -1,120 +1,121 @@
 from UI.language_resources import LanguageResources
+from UI_base import get_text
 
 
 __statistics = LanguageResources().statistics
 
 
 def get_summary_statistic() -> str:
-    return __statistics.get('summary_statistic')
+    return get_text(__statistics, 'summary_statistic')
 
 
 def get_profit() -> str:
-    return __statistics.get('profit')
+    return get_text(__statistics, 'profit')
 
 
 def get_income() -> str:
-    return __statistics.get('income')
+    return get_text(__statistics, 'income')
 
 
 def get_spent() -> str:
-    return __statistics.get('spent')
+    return get_text(__statistics, 'spent')
 
 
 def get_price_purchase() -> str:
-    return __statistics.get('price_purchase')
+    return get_text(__statistics, 'price_purchase')
 
 
 def get_charges() -> str:
-    return __statistics.get('charges')
+    return get_text(__statistics, 'charges')
 
 
 def get_total_models() -> str:
-    return __statistics.get('total_models')
+    return get_text(__statistics, 'total_models')
 
 
 def get_total_defects() -> str:
-    return __statistics.get('total_defects')
+    return get_text(__statistics, 'total_defects')
 
 
 def get_without_defect() -> str:
-    return __statistics.get('without_defect')
+    return get_text(__statistics, 'without_defect')
 
 
 def get_chart_profit_phones() -> str:
-    return __statistics.get('chart_profit_phones')
+    return get_text(__statistics, 'chart_profit_phones')
 
 
 def get_chart_profit_models() -> str:
-    return __statistics.get('chart_profit_models')
+    return get_text(__statistics, 'chart_profit_models')
 
 
 def get_chart_profit_solved_defects() -> str:
-    return __statistics.get('chart_profit_solved_defects')
+    return get_text(__statistics, 'chart_profit_solved_defects')
 
 
 def get_chart_profit_users() -> str:
-    return __statistics.get('chart_profit_users')
+    return get_text(__statistics, 'chart_profit_users')
 
 
 def get_all_statistic() -> str:
-    return __statistics.get('all_statistic')
+    return get_text(__statistics, 'all_statistic')
 
 
 def get_statistic_by_months() -> str:
-    return __statistics.get('statistic_by_months')
+    return get_text(__statistics, 'statistic_by_months')
 
 
 def get_statistic_by_years() -> str:
-    return __statistics.get('statistic_by_years')
+    return get_text(__statistics, 'statistic_by_years')
 
 
 def get_statistic_from() -> str:
-    return __statistics.get('statistic_from')
+    return get_text(__statistics, 'statistic_from')
 
 
 def get_statistic_to() -> str:
-    return __statistics.get('statistic_to')
+    return get_text(__statistics, 'statistic_to')
 
 
 def get_by_days() -> str:
-    return __statistics.get('by_days')
+    return get_text(__statistics, 'by_days')
 
 
 def get_by_months() -> str:
-    return __statistics.get('by_months')
+    return get_text(__statistics, 'by_months')
 
 
 def get_by_years() -> str:
-    return __statistics.get('by_years')
+    return get_text(__statistics, 'by_years')
 
 
 def get_for_preview_week() -> str:
-    return __statistics.get('for_preview_week')
+    return get_text(__statistics, 'for_preview_week')
 
 
 def get_for_preview_month() -> str:
-    return __statistics.get('for_preview_month')
+    return get_text(__statistics, 'for_preview_month')
 
 
 def get_for_current_week() -> str:
-    return __statistics.get('for_current_week')
+    return get_text(__statistics, 'for_current_week')
 
 
 def get_for_current_month() -> str:
-    return __statistics.get('for_current_month')
+    return get_text(__statistics, 'for_current_month')
 
 
 def get_for_7_days() -> str:
-    return __statistics.get('for_7_days')
+    return get_text(__statistics, 'for_7_days')
 
 
 def get_for_30_days() -> str:
-    return __statistics.get('for_30_days')
+    return get_text(__statistics, 'for_30_days')
 
 
 def get_for_31_days() -> str:
-    return __statistics.get('for_31_days')
+    return get_text(__statistics, 'for_31_days')
 
 
 def get_apply_filter() -> str:
-    return __statistics.get('apply_filter')
+    return get_text(__statistics, 'apply_filter')

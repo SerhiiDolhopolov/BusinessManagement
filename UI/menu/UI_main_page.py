@@ -1,4 +1,5 @@
 from UI.language_resources import LanguageResources
+from UI_base import get_text
 
 from database.users_db import Role
 from models.status import StatusManager, StatusType
@@ -21,55 +22,49 @@ def get_info(role: Role) -> str:
     return (
         '\n'.join(commands)
         + '\n\n'
-        + __main_page.get('additional_info')
+        + get_text(__main_page, 'additional_info')
     )
 
 
 def get_my_phones_button() -> str:
-    return __buttons.get('my_phones')
+    return get_text(__buttons, 'my_phones')
 
 
 def get_add_button() -> str:
-    return __buttons.get('add')
+    return get_text(__buttons, 'add')
 
 
 def get_available_button() -> str:
-    return __buttons.get('available').format(
-        emoji=StatusManager.get_emoji(StatusType.AVAILABLE)
-    )
+    return get_text(__buttons, 'available', emoji=StatusManager.get_emoji(StatusType.AVAILABLE))
 
 
 def get_phones_button() -> str:
-    return __buttons.get('phones')
+    return get_text(__buttons, 'phones')
 
 
 def get_need_spares_button() -> str:
-    return __buttons.get('need_spares').format(
-        emoji=StatusManager.get_emoji(StatusType.WAITING_FOR_SPARES)
-    )
+    return get_text(__buttons, 'need_spares', emoji=StatusManager.get_emoji(StatusType.WAITING_FOR_SPARES))
 
 
 def get_need_repairs_button() -> str:
-    return __buttons.get('need_repairs').format(
-        emoji=StatusManager.get_emoji(StatusType.WAITING_FOR_REPAIRS)
-    )
+    return get_text(__buttons, 'need_repairs', emoji=StatusManager.get_emoji(StatusType.WAITING_FOR_REPAIRS))
 
 
 def get_users_button() -> str:
-    return __buttons.get('users')
+    return get_text(__buttons, 'users')
 
 
 def get_couriers_button() -> str:
-    return __buttons.get('couriers')
+    return get_text(__buttons, 'couriers')
 
 
 def get_managers_button() -> str:
-    return __buttons.get('managers')
+    return get_text(__buttons, 'managers')
 
 
 def get_admin_panel_button() -> str:
-    return __buttons.get('admin_panel')
+    return get_text(__buttons, 'admin_panel')
 
 
 def get_statistics_button() -> str:
-    return __buttons.get('statistics')
+    return get_text(__buttons, 'statistics')
