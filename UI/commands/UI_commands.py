@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from UI.language_resources import LanguageResources
-from UI_base import get_text
+from UI.base import get_text
 from models.status import StatusType
 from database.users_db import Role
 from bot import TIMEZONE, DATE_FORMAT_VISIBLE, CURRENCY, format_money

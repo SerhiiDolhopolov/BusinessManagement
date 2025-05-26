@@ -1,6 +1,6 @@
 from UI.language_resources import LanguageResources
 from UI.emoji import UI_emoji
-from UI_base import get_text
+from UI.base import get_text
 
 from models.status import StatusManager, StatusType
 from models.order import Order

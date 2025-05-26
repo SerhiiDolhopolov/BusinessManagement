@@ -1,4 +1,5 @@
 from UI.language_resources import LanguageResources
+from UI.base import get_text
 
 
 __emoji = LanguageResources().emoji

@@ -1,4 +1,5 @@
 from UI.language_resources import LanguageResources
+from UI.base import get_text
 
 
 __emoji = LanguageResources().emoji
@@ -6,36 +7,36 @@ __status = __emoji['status']
 
 
 def get_on_the_way() -> str:
-    return __status.get('on_the_way')
+    return get_text(__status, 'on_the_way')
 
 
 def get_waiting_for_spares() -> str:
-    return __status.get('waiting_for_spares')
+    return get_text(__status, 'waiting_for_spares')
 
 
 def get_waiting_for_repairs() -> str:
-    return __status.get('waiting_for_repairs')
+    return get_text(__status, 'waiting_for_repairs')
 
 
 def get_waiting_for_photo() -> str:
-    return __status.get('waiting_for_photo')
+    return get_text(__status, 'waiting_for_photo')
 
 
 def get_waiting_for_publication() -> str:
-    return __status.get('waiting_for_publication')
+    return get_text(__status, 'waiting_for_publication')
 
 
 def get_available() -> str:
-    return __status.get('available')
+    return get_text(__status, 'available')
 
 
 def get_finished() -> str:
-    return __status.get('finished')
+    return get_text(__status, 'finished')
 
 
 def get_cancelled() -> str:
-    return __status.get('cancelled')
+    return get_text(__status, 'cancelled')
 
 
 def get() -> str:
-    return __status.get('_')
+    return get_text(__status, '_')

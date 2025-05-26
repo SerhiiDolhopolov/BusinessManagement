@@ -1,8 +1,9 @@
 import html
+
 from bot import CURRENCY, MEMORY_DIMENSION, format_money
 
 from UI.language_resources import LanguageResources
-from UI_base import get_text
+from UI.base import get_text, get_html_text
 from database.users_db import Role, RoleManager
 from models.phone import Phone
 from models.order import Order
@@ -30,7 +31,7 @@ def get_ask_battery_status() -> str:
 
 def get_select_defects(phone: Phone) -> str:
     model = f"<code>{phone.model}</code>"
-    return get_text(__add_page, 'select_defect', model=model)
+    return get_html_text(__add_page, 'select_defect', model=model)
 
 
 def get_continue_button() -> str:
@@ -67,7 +68,7 @@ def get_confirm_message(order: Order, order_id: int, phone: Phone) -> str:
         else f"<pre>{html.escape(str(order.status.comment))}</pre>"
     )
     date_time = f"<code>{order.status.get_str_date_time()}</code>"
-    return get_text(
+    return get_html_text(
         __add_page, 'confirm_message',
         order_id=order_id,
         title=title,
@@ -83,7 +84,7 @@ def get_confirm_message_to_other_admin(
     user_username: str, user_role: Role, text: str
 ) -> str:
     emoji_user = RoleManager.get_emoji(user_role)
-    return get_text(
+    return get_html_text(
         __add_page, 'confirm_message_to_other_admin',
         emoji_user=emoji_user, username=user_username, text=text
     )

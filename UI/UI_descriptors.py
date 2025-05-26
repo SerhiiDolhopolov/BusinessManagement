@@ -1,4 +1,4 @@
-from UI_base import get_text
+from UI.base import get_text
 from UI.language_resources import LanguageResources
 
 

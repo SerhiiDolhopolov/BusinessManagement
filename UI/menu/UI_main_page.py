@@ -1,5 +1,5 @@
 from UI.language_resources import LanguageResources
-from UI_base import get_text
+from UI.base import get_text
 
 from database.users_db import Role
 from models.status import StatusManager, StatusType
@@ -13,11 +13,11 @@ __buttons = __main_page['buttons']
 def get_info(role: Role) -> str:
     commands = []
     if role in (Role.ADMIN, Role.MANAGER):
-        commands.append(__main_page['command_order'])
+        commands.append(get_text(__main_page, 'command_order'))
     if role is Role.ADMIN:
-        commands.append(__main_page['command_role'])
+        commands.append(get_text(__main_page, 'command_role'))
     if role in (Role.ADMIN, Role.MANAGER):
-        commands.append(__main_page['command_backup'])
+        commands.append(get_text(__main_page, 'command_backup'))
 
     return (
         '\n'.join(commands)

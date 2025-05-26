@@ -1,5 +1,5 @@
 from UI.language_resources import LanguageResources
-from UI_base import get_text
+from UI.base import get_text
 
 __menu = LanguageResources().menu
 __admin_page = __menu['admin_page']
