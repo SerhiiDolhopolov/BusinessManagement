@@ -1,5 +1,5 @@
 from UI.language_resources import LanguageResources
-from UI.base import get_text
+from UI.base import get_text, get_html_text
 
 
 __menu = LanguageResources().menu
@@ -14,4 +14,4 @@ def get_user_registration_select_role(username: str) -> str:
 
 
 def get_chat_with_admin_button(username: str) -> str:
-    return f"{get_text(__menu, 'chat_with_admin_button')} {username}"
+    return f"{get_html_text(__menu, 'chat_with_admin_button')} {username}"

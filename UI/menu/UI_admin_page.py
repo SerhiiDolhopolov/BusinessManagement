@@ -1,5 +1,7 @@
+import html
+
 from UI.language_resources import LanguageResources
-from UI.base import get_text
+from UI.base import get_text, get_html_text
 
 __menu = LanguageResources().menu
 __admin_page = __menu['admin_page']
@@ -18,19 +20,19 @@ def get_models_info() -> str:
 
 
 def get_models_button() -> str:
-    return get_text(__models, 'button')
+    return get_html_text(__models, 'button')
 
 
 def get_models_color_button() -> str:
-    return get_text(__models, 'color_button')
+    return get_html_text(__models, 'color_button')
 
 
 def get_models_memory_button() -> str:
-    return get_text(__models, 'memory_button')
+    return get_html_text(__models, 'memory_button')
 
 
 def get_models_delete_button() -> str:
-    return get_text(__models, 'delete_button')
+    return get_html_text(__models, 'delete_button')
 
 
 def get_ask_new_model() -> str:
@@ -54,7 +56,7 @@ def get_colors_info() -> str:
 
 
 def get_colors_button() -> str:
-    return get_text(__colors, 'button')
+    return get_html_text(__colors, 'button')
 
 
 def get_ask_new_color() -> str:
@@ -66,7 +68,7 @@ def get_defects_info() -> str:
 
 
 def get_defects_button() -> str:
-    return get_text(__defects, 'button')
+    return get_html_text(__defects, 'button')
 
 
 def get_ask_new_defect() -> str:
@@ -78,7 +80,7 @@ def get_memory_info() -> str:
 
 
 def get_memory_button() -> str:
-    return get_text(__memory, 'button')
+    return get_html_text(__memory, 'button')
 
 
 def get_ask_new_memory() -> str:

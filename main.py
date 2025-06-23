@@ -20,7 +20,7 @@ async def send_backup_to_admins():
     admins = users_DB.get_admins()
     file, message = await get_backup()
     for telegram_id, _, _ in admins:
-        await bot.send_document(telegram_id, document=file, caption=message)
+        await bot.send_document(telegram_id, document=file, caption=message, parse_mode='HTML')
 
 
 scheduler = AsyncIOScheduler(timezone=TIMEZONE)

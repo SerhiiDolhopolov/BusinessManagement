@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from UI.language_resources import LanguageResources
-from UI.base import get_text
+from UI.base import get_text, get_html_text
 from models.status import StatusType
 from database.users_db import Role
 from bot import TIMEZONE, DATE_FORMAT_VISIBLE, CURRENCY, format_money
@@ -83,7 +83,7 @@ def get_backup_info(
     spent_on_charges = f"<code>{format_money(charges_sum)} {CURRENCY}</code>"
     spent = f"<code>{format_money(price_purchase_sum + charges_sum)} {CURRENCY}</code>"
 
-    return get_text(
+    return get_html_text(
         __backup, 'info',
         date=date,
         statuses=statuses,

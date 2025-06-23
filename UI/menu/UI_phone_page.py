@@ -94,31 +94,31 @@ def get_order_button(order_id: int) -> str:
     return get_html_text(__phone_page, 'order_button', order_id=order_id)
 
 def get_change_price_purchase_button() -> str:
-    return get_text(__buttons, 'change_price_purchase')
+    return get_html_text(__buttons, 'change_price_purchase')
 
 def get_change_charges_button() -> str:
-    return get_text(__buttons, 'change_charges')
+    return get_html_text(__buttons, 'change_charges')
 
 def get_change_price_selling_button() -> str:
-    return get_text(__buttons, 'change_price_selling')
+    return get_html_text(__buttons, 'change_price_selling')
 
 def get_change_memory_button() -> str:
-    return get_text(__buttons, 'change_memory')
+    return get_html_text(__buttons, 'change_memory')
 
 def get_change_battery_button() -> str:
-    return get_text(__buttons, 'change_battery')
+    return get_html_text(__buttons, 'change_battery')
 
 def get_change_defects_button() -> str:
-    return get_text(__buttons, 'change_defects')
+    return get_html_text(__buttons, 'change_defects')
 
 def get_change_status_button() -> str:
-    return get_text(__buttons, 'change_status')
+    return get_html_text(__buttons, 'change_status')
 
 def get_solve_defect_button() -> str:
-    return get_text(__buttons, 'solve_defect')
+    return get_html_text(__buttons, 'solve_defect')
 
 def get_history_button() -> str:
-    return get_text(__buttons, 'history')
+    return get_html_text(__buttons, 'history')
 
 def get_ask_change_price_purchase(current_price_purchase: float) -> str:
     value = f"<code>{format_money(current_price_purchase)} {CURRENCY}</code>"
@@ -175,7 +175,7 @@ def get_confirm_change_defects(defects_from: list[str], defects_to: list[str]) -
     return __change_defects.get('confirm').format(defects_from=defects_from, defects_to=defects_to)
 
 def get_defect_continue_button() -> str:
-    return get_text(__change_defects, 'continue_button')
+    return get_html_text(__change_defects, 'continue_button')
 
 def get_ask_change_status(current_status_type: StatusType) -> str:
     emoji = StatusManager.get_emoji(current_status_type)
@@ -202,7 +202,7 @@ def get_confirm_change_status(order: Order, order_id: int, phone: Phone, status_
                                                  comment=comment)
 
 def get_status_confirm_button() -> str:
-    return get_text(__change_status, 'confirm_button')
+    return get_html_text(__change_status, 'confirm_button')
 
 def get_ask_solve_defect(phone: Phone) -> str:
     model = f"<code>{phone.model}</code>"

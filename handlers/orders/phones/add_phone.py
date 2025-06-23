@@ -455,7 +455,7 @@ async def add_random_phones_to_database(count: int):
 
         status = Status(StatusType.ON_THE_WAY)
         status.comment = None
-        status.date_time = datetime.now(TIMEZONE) + timedelta(seconds=add_seconds)
+        status.date_time = datetime.now(TIMEZONE) - timedelta(days=30) + timedelta(seconds=add_seconds)
         user_id = random.choice(users_ids)
 
         order_id = orders_DB.add_order(phone_id, random.uniform(0, 1000))
@@ -481,10 +481,16 @@ async def add_random_phones_to_database(count: int):
         )[0]:
             status = Status(status_type)
             status.comment = random.choice([None, random.choice(string.ascii_letters)])
-            status.date_time = datetime.now(TIMEZONE) + (
-                timedelta(seconds=add_seconds, minutes=5)
-                if status_type == StatusType.AVAILABLE
-                else timedelta(seconds=add_seconds, minutes=20)
+            status.date_time = (
+                datetime.now(TIMEZONE)
+                - timedelta(
+                    days=30
+                )
+                + (
+                    timedelta(seconds=add_seconds, minutes=5)
+                    if status_type == StatusType.AVAILABLE
+                    else timedelta(seconds=add_seconds, minutes=20)
+                )
             )
             user_id = random.choice(users_ids)
             statuses_DB.add_status(user_id, order_id, status)

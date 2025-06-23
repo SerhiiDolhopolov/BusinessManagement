@@ -35,7 +35,7 @@ def get_select_defects(phone: Phone) -> str:
 
 
 def get_continue_button() -> str:
-    return get_text(__add_page, 'continue_button')
+    return get_html_text(__add_page, 'continue_button')
 
 
 def get_ask_price_purchase() -> str:
@@ -47,7 +47,7 @@ def get_ask_comment() -> str:
 
 
 def get_confirm_button() -> str:
-    return get_text(__add_page, 'confirm_button')
+    return get_html_text(__add_page, 'confirm_button')
 
 
 def get_confirm_message(order: Order, order_id: int, phone: Phone) -> str:
@@ -91,4 +91,4 @@ def get_confirm_message_to_other_admin(
 
 
 def get_order_button(order_id: int) -> str:
-    return get_text(__add_page, 'order_button', order_id=order_id)
+    return get_html_text(__add_page, 'order_button', order_id=order_id)

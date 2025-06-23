@@ -1,6 +1,6 @@
 from UI.language_resources import LanguageResources
 from UI.emoji import UI_emoji
-from UI.base import get_text
+from UI.base import get_text, get_html_text
 
 from models.status import StatusManager, StatusType
 from models.order import Order
@@ -31,8 +31,8 @@ def get_status_button(status_type: StatusType = None) -> str:
     """If status_type == None return all phones info"""
     emoji = StatusManager.get_emoji(status_type)
     if status_type:
-        return get_text(__phones_page, 'status_button', emoji=emoji, status=status_type)
-    return get_text(__phones_page, 'all_phones_status_button')
+        return get_html_text(__phones_page, 'status_button', emoji=emoji, status=status_type)
+    return get_html_text(__phones_page, 'all_phones_status_button')
 
 
 def get_select_status() -> str:
@@ -51,7 +51,7 @@ def get_phone_button(order: Order, phone: Phone) -> str:
         price_selling = f"{format_money(order.price_selling)}{CURRENCY}"
         money_emoji = UI_emoji.get_money()
 
-    return get_text(
+    return get_html_text(
         __phones_page, 'phone_button',
         status_emoji=status_emoji,
         title=title,

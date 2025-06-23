@@ -39,7 +39,7 @@ class CommandsState(StatesGroup):
 async def command_add_phones(message: Message):
     await send_backup(message.from_user.id)
     if logging.getLogger().isEnabledFor(logging.DEBUG):
-        await add_random_phones_to_database(50000)
+        await add_random_phones_to_database(20000)
 
 
 @router.message(CommandStart())
@@ -230,7 +230,7 @@ async def command_backup(message: Message):
 
 async def send_backup(user_id: int):
     file, message = await get_backup()
-    await bot.send_document(user_id, document=file, caption=message)
+    await bot.send_document(user_id, document=file, caption=message, parse_mode='HTML')
 
 
 async def get_backup() -> tuple[FSInputFile, str]:
